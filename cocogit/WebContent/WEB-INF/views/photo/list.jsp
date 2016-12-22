@@ -65,11 +65,11 @@ function article(num) {
     <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
         
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>
+	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 야사 보자!! </h3>
 	    </div>
 	    
 	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 추억의 포토 겔러리를 회원과 공유할 수 있는 공간입니다.
+	        <i class="glyphicon glyphicon-info-sign"></i> 보면 바로 꼴리는 사진들입니다!!
 	    </div>
 	
 	    <div style="max-width:660px; margin: 0px auto;">

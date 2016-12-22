@@ -33,7 +33,7 @@
 <div class="container" role="main">
 
     <div class="jumbotron">
-        <h1>자바 정복하기 ...</h1>
+        <h1> 네모장군의 좌충우돌 JAVA이야기 ...</h1>
         <p style="margin-right: 50px; margin-bottom: 5px;">프로그래머는 자신이 제일 좋아하는 일을 실현하기 위해 끊임없이 열정적으로 연구하는 사람입니다.</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">시작하기 &raquo;</a></p>
     </div>

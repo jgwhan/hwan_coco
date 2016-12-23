@@ -76,7 +76,7 @@ $(function(){
                             <ul class="dropdown-menu">
                                 <li><a href="#">방명록</a></li>
                                 <li><a href="#">게시판</a></li>
-                                <li><a href="<%=cp%>/photo/list.do">포토갤러리</a></li>
+                                <li><a href="<%=cp%>/photo/list.do">성인 갤러리</a></li>
                                 <li><a href="#">자료실</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">채팅</a></li>

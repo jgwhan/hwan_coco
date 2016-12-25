@@ -29,7 +29,7 @@
       <div style="min-height: 450px;">
             <div style="width:100%;   height: 40px; line-height:40px;clear: both; border-top: 1px solid #DAD9FF;border-bottom: 1px solid #DAD9FF;">
                 <div style="width:700px; height:30px; line-height:30px; margin:5px auto;">
-                    <img src="<%=cp%>/res/images/arrow.gif" alt="" style="padding-left: 5px; padding-right: 5px;">
+                    <img src="<%=cp%>/images/arrow.gif" alt="" style="padding-left: 5px; padding-right: 5px;">
                     <span style="font-weight: bold;font-size:13pt;font-family: 나눔고딕, 맑은 고딕, 굴림;">게시판</span>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                        </form>
                      </td>
                      <td align="right">
-                         <input type="image" src="<%=cp%>/res/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/bbs/created.do';">
+                         <input type="image" src="<%=cp%>/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/bbs/created.do';">
                      </td>
                   </tr>
                </table>
@@ -71,7 +71,7 @@
                         <td align="left" style="padding-left: 10px;">
                             <a href='${articleUrl}&num=${dto.num}'>${dto.subject}</a>
                             <c:if test="${dto.gap<1}">
-                               <img src="<%=cp%>/res/images/new.gif">
+                               <img src="<%=cp%>/images/new.gif">
                             </c:if>
                         </td>
                         <td align="center">${dto.name}</td>

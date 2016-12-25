@@ -5,9 +5,9 @@
    request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-	<h2><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </h2>
+	<h2 style="margin-left: 30px;"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </h2>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="margin-left: 30px; margin-right: 30px">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">

@@ -27,8 +27,8 @@
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
-<body style="margin-left: 30px; margin-right: 30px">
-<div class="jumbotron" >
+<body >
+<div class="jumbotron" style="margin-left: 30px; margin-right: 30px">
   <h1 style="margin-left: 15px">쭈니장군과  함께 IT 공부를!</h1>
   <p style="margin-left: 15px">재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
   <img alt="" src="images/gengi.gif" style="margin-left: 15px">

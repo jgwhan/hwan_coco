@@ -5,7 +5,7 @@ public class BoardDTO {
 	int num,hitcount;
 	String userid,subject,content,created;
 	public int getNum() {
-		return num;
+		return num; 
 	}
 	public void setNum(int num) {
 		this.num = num;

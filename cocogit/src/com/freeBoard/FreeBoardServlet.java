@@ -17,12 +17,14 @@ public class FreeBoardServlet extends MyServlet{
 	@Override
 	protected void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		req.setCharacterEncoding("UTF-8");
 		String uri=req.getRequestURI();
 //		String cp=req.getContextPath();
 		
 		if(uri.indexOf("list.do")!=-1) 
 		{
 			forward(req, resp, "/WEB-INF/views/freeBoard/list.jsp");
+			
 		}
 		
 	}

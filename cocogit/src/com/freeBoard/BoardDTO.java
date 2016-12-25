@@ -1,6 +1,6 @@
 package com.freeBoard;
 
-public class BoardDTO {
+public class BoardDTO { 
 
 	int num,hitcount;
 	String userid,subject,content,created;

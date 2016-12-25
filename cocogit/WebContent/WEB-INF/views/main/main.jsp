@@ -1,54 +1,39 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-   String cp = request.getContextPath();
+   request.setCharacterEncoding("UTF-8");
+	String cp = request.getContextPath();
 %>
-
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>spring</title>
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+<title>부트스트랩 101 템플릿</title>
 
-<link rel="stylesheet" href="<%=cp%>/res/jquery/css/smoothness/jquery-ui.min.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/res/bootstrap/css/bootstrap.min.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/res/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
-
-<link rel="stylesheet" href="<%=cp%>/res/css/style.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/res/css/layout/layout.css" type="text/css"/>
-
-<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-1.12.4.min.js"></script>
-
+<!-- 부트스트랩 -->
+<link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script
+	src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div>
-    <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
-<div class="container" role="main">
-
-    <div class="jumbotron">
-        <h1> 신협쿤과 기현쨔응 ...★!</h1>
-        <p style="margin-right: 50px; margin-bottom: 5px;">프로그래머는 자신이 제일 좋아하는 일을 실현하기 위해 끊임없이 열정적으로 연구하는 사람입니다.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">시작하기 &raquo;</a></p>
-    </div>
-
-    <div class="bodyFrame">
-         메인 화면
-     </div>
- </div>
-
-<div>
-    <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
+<div class="jumbotron">
+  <h1>쭈니장군과  함께 IT 공부를!</h1>
+  <p>재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
+  <img alt="" src="images/gengi.gif">
+  <p><a class="btn btn-primary btn-lg">Learn more</a></p>
 </div>
 
-<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>

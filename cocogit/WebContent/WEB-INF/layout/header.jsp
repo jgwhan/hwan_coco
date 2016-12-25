@@ -7,6 +7,25 @@
 %>
 	<h2 style="margin-left: 30px;"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 22</h2>
 
+<div class="login header-login">
+	<c:if test="${empty sessionScope.member}">
+		<a href="<%=cp%>/member/login.do"><span class="glyphicon glyphicon-log-in">로그인</span> </a>
+		<i></i>
+		<a href="<%=cp%>/member/member.do"><span
+			class="glyphicon glyphicon-user"></span> 회원가입</a>
+	</c:if>
+	<c:if test="${not empty sessionScope.member}">
+		<span style="color: blue;">${sessionScope.member.userName}</span>님 <i></i>
+		<c:if test="${sessionScope.member.userId=='admin'}">
+			<a href="<%=cp%>/admin/main.do">관리자</a>
+			<i></i>
+		</c:if>
+		<a href="<%=cp%>/member/logout.do"><span
+			class="glyphicon glyphicon-log-out"></span> 로그아웃</a>
+	</c:if>
+</div>
+
+
 <nav class="navbar navbar-inverse" style="margin-left: 30px; margin-right: 30px">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -14,7 +33,7 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
       </button>
       <a class="navbar-brand" href="#">소개</a>
     </div>

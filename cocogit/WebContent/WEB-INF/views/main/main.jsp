@@ -22,16 +22,16 @@
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
+
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
-<div class="jumbotron">
-  <h1>쭈니장군과  함께 IT 공부를!</h1>
-  <p>재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
-  <img alt="" src="images/gengi.gif">
-  <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+<body style="margin-left: 30px; margin-right: 30px">
+<div class="jumbotron" >
+  <h1 style="margin-left: 15px">쭈니장군과  함께 IT 공부를!</h1>
+  <p style="margin-left: 15px">재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
+  <img alt="" src="images/gengi.gif" style="margin-left: 15px">
 </div>
 
 

@@ -5,7 +5,7 @@
    request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-	<h1><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </h1>
+	<h2><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </h2>
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">

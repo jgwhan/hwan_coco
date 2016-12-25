@@ -34,7 +34,7 @@
          <li><a href="<%=cp%>/qaBoard/list.do">질문게시판</a></li>
         <li><a href="<%=cp%>/guestBoard/list.do">방명록</a></li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>

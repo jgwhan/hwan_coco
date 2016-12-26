@@ -6,7 +6,7 @@
 	String cp = request.getContextPath();
 %>
 
-<style type="text/css">
+<style type="text/css">  /* 안돼욤????????????? */
  a:link { color: black; text-decoration: none;}
  a:visited { color: black; text-decoration: none;}
  a:hover { color: black; text-decoration: none;}

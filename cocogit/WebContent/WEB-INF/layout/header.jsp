@@ -5,14 +5,14 @@
    request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-	<h2 style="margin-left: 30px;"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 22</h2>
+	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </a></h2>
 
-<div class="login header-login">
+<div class="login header-login" align="right" style="margin-right: 30px;" >
 	<c:if test="${empty sessionScope.member}">
 		<a href="<%=cp%>/member/login.do"><span class="glyphicon glyphicon-log-in">로그인</span> </a>
 		<i></i>
 		<a href="<%=cp%>/member/member.do"><span
-			class="glyphicon glyphicon-user"></span> 회원가입</a>
+			class="glyphicon glyphicon-user" style="margin-left: 10px"></span> 회원가입</a>
 	</c:if>
 	<c:if test="${not empty sessionScope.member}">
 		<span style="color: blue;">${sessionScope.member.userName}</span>님 <i></i>

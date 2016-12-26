@@ -52,7 +52,7 @@
 <script type="text/javascript">
 function updatePhoto(num) {
 	<c:if test="${sessionScope.member.userId==dto.userId}">
-	     var url="<%=cp%>/photo/update.do?num="+num+"&page=${page}";
+	     var url="<%=cp%>/freePhoto/update.do?num="+num+"&page=${page}";
 	     location.href=url;
 	</c:if>
 }
@@ -60,7 +60,7 @@ function updatePhoto(num) {
 function deletePhoto(num) {
 	<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
          if(confirm("게시물을 삭제 하시겠습니까 ?")) {
-        	 var url="<%=cp%>/photo/delete.do?num="+num+"&page=${page}";
+        	 var url="<%=cp%>/freePhoto/delete.do?num="+num+"&page=${page}";
         	 location.href=url;
          }	
 	</c:if>
@@ -105,7 +105,7 @@ function deletePhoto(num) {
 	                     </tr>
                          <tr style="border-bottom:none;">
                              <td colspan="2">
-                                 <img src="<%=cp%>/uploads/photo/${dto.imageFilename}" style="max-width:100%; height:auto; resize:both;">
+                                 <img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}" style="max-width:100%; height:auto; resize:both;">
                              </td>
                          </tr>
 	                     <tr>

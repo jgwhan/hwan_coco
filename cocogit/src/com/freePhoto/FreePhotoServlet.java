@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import com.member.SessionInfo;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -45,7 +44,7 @@ public class FreePhotoServlet extends MyServlet {
 		String root=session.getServletContext().getRealPath("/");
 		pathname=root+File.separator+"uploads"+
 				      File.separator+"freePhoto";
-		System.out.println(pathname);
+		
 		File f=new File(pathname);
 		if(! f.exists())
 			f.mkdirs();
@@ -187,21 +186,78 @@ public class FreePhotoServlet extends MyServlet {
 	}	
 	
 	private void update(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		String cp=req.getContextPath();
+		FreePhotoDAO dao=new FreePhotoDAO();
 		
+		if(info==null) {
+			forward(req, resp, "/WEB-INF/views/member/login.jsp");
+			return;
+		}
+		
+		int num=Integer.parseInt(req.getParameter("num"));
+		String page=req.getParameter("page");
+		String rows=req.getParameter("rows");
+		
+		FreePhotoDTO dto=dao.readPhoto(num);
+		
+		if(dto==null || ! dto.getUserId().equals(info.getUserId())) {
+			resp.sendRedirect(cp+"/freePhoto/list.do?page="+page+"&rows="+rows);
+			return;
+		}
+		
+		req.setAttribute("dto", dto);
 		req.setAttribute("mode", "update");
+		req.setAttribute("page", page);
+		req.setAttribute("rows", rows);
+		
+		
 		forward(req, resp, "/WEB-INF/views/freePhoto/created.jsp");
 	}	
 
 	private void update_ok(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		String cp=req.getContextPath();
 		
-		resp.sendRedirect(cp+"/freePhoto/list.do");
+		String cp=req.getContextPath();
+		FreePhotoDAO dao=new FreePhotoDAO();
+		
+		if(info==null) {
+			forward(req, resp, "/WEB-INF/views/member/login.jsp");
+			return;
+		}
+		
+		FreePhotoDTO dto=new FreePhotoDTO();
+		dto.setNum(Integer.parseInt(req.getParameter("num")));
+		dto.setSubject(req.getParameter("subject"));
+		dto.setContent(req.getParameter("content"));
+		dto.setImageFilename(req.getParameter("IMAGEFILENAME"));
+		String page=req.getParameter("page");
+		String rows=req.getParameter("rows");
+		
+		dao.updatePhoto(dto);
+		
+		
+		resp.sendRedirect(cp+"/freePhoto/list.do?page="+page+"&rows="+rows);
 	}
 	
 	private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String cp=req.getContextPath();
+		FreePhotoDAO dao=new FreePhotoDAO();
 		
-		resp.sendRedirect(cp+"/freePhoto/list.do");
+		if(info==null) {
+			forward(req, resp, "/WEB-INF/views/member/login.jsp");
+			return;
+		}
+		
+		int num=Integer.parseInt(req.getParameter("num"));
+		String page=req.getParameter("page");
+		String rows=req.getParameter("rows");
+		
+		FreePhotoDTO dto=dao.readPhoto(num);
+		if(dto!=null && (info.getUserId().equals("admin") || dto.getUserId().equals(info.getUserId())) ) {
+			dao.deletePhoto(num);
+		}
+		
+		
+		resp.sendRedirect(cp+"/freePhoto/list.do?page="+page+"&rows="+rows);
 	}
 	
 }

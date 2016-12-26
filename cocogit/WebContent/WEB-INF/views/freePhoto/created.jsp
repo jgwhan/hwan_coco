@@ -105,7 +105,7 @@
     <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
     
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>
+	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>
 	    </div>
 	    
 	    <div class="alert alert-info">
@@ -153,7 +153,7 @@
                             <tr>
                                 <td class="td1">등록이미지</td>
                                 <td colspan="3" class="td3">
-                                    <img src="<%=cp%>/uploads/photo/${dto.imageFilename}"
+                                    <img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}"
 				                     width="30" height="30" border="0"
 				                     onclick="imageViewer('<%=cp%>/uploads/freePhoto/${dto.imageFilename}');"
 				                     style="cursor: pointer;">

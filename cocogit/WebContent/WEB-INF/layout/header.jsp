@@ -12,8 +12,7 @@
  a:hover { color: black; text-decoration: none;}
 </style>
 
-
-	<div class="a">
+	<div class="main-a">
 	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </a></h2>
 	</div>
 	

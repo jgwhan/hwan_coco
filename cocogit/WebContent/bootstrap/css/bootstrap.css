@@ -5066,11 +5066,13 @@ a.thumbnail.active {
 .alert-success .alert-link {
   color: #2b542c;
 }
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-}
+ .alert-info {
+  color: "background-color: #D8D8D8; 
+  background-color:#D8D8D8;
+  border-color: activeborder;
+} 
+
+/* #BDBDBD */
 .alert-info hr {
   border-top-color: #a6e1ec;
 }

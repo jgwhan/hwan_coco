@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.util.MyServlet;
+import com.util.MyUtil;
 
 @WebServlet("/freeBoard/*")
 public class FreeBoardServlet extends MyServlet{
@@ -17,9 +18,11 @@ public class FreeBoardServlet extends MyServlet{
 	@Override
 	protected void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.setCharacterEncoding("UTF-8");
+		MyUtil myutil = new MyUtil();
+		
+		req.setCharacterEncoding("UTF-8");		
+		String cp=req.getContextPath();
 		String uri=req.getRequestURI();
-//		String cp=req.getContextPath();
 		
 		if(uri.indexOf("list.do")!=-1) 
 		{

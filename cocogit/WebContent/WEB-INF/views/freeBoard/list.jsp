@@ -31,7 +31,7 @@
             <div style="width:100%;   height: 40px; line-height:40px;clear: both; border-top: 1px solid #DAD9FF;border-bottom: 1px solid #DAD9FF;">
                 <div style="width:700px; height:30px; line-height:30px; margin:5px auto;">
                     <img src="<%=cp%>/images/arrow.gif" alt="" style="padding-left: 5px; padding-right: 5px;">
-                    <span style="font-weight: bold;font-size:13pt;font-family: 나눔고딕, 맑은 고딕, 굴림;">게시판</span>
+                    <span style="font-weight: bold;font-size:13pt;font-family: 나눔고딕, 맑은 고딕, 굴림;">자유 게시판</span>
                 </div>
             </div>
          
@@ -52,7 +52,7 @@
                        </form>
                      </td>
                      <td align="right">
-                         <input type="image" src="<%=cp%>/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/bbs/created.do';">
+                         <input type="image" src="<%=cp%>/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/freeBoard/created.do';">
                      </td>
                   </tr>
                </table>
@@ -61,7 +61,7 @@
                  <tr align="center" bgcolor="#000000" height="30"> 
                      <td width="60" style="color: #ffffff;">번호</td>
                      <td width="400" style="color: #ffffff;">제목</td>
-                     <td width="100" style="color: #ffffff;">닉네임</td>
+                     <td width="100" style="color: #ffffff;">작성자</td>
                      <td width="80" style="color: #ffffff;">작성일</td>
                      <td width="60" style="color: #ffffff;">조회수</td>
                  </tr>

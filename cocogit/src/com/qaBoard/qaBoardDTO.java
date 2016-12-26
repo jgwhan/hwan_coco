@@ -1,10 +1,28 @@
 package com.qaBoard;
 
 public class qaBoardDTO {
-	private int boardNum, groupNum, depth, orderNo, parent, hitCount;
-	private String name, pwd, subject, content, created;
+	private int listNum,boardNum, groupNum, depth, orderNo, parent, hitCount;
+	private String  pwd, subject, content, created, userName, userId;
 	
 	
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -41,12 +59,7 @@ public class qaBoardDTO {
 	public void setHitCount(int hitCount) {
 		this.hitCount = hitCount;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getPwd() {
 		return pwd;
 	}

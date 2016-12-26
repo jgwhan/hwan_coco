@@ -5,8 +5,18 @@
    request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </a></h2>
 
+<style type="text/css">
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: black; text-decoration: none;}
+</style>
+
+
+	<div class="a">
+	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </a></h2>
+	</div>
+	
 <div class="login header-login" align="right" style="margin-right: 30px;" >
 	<c:if test="${empty sessionScope.member}">
 		<a href="<%=cp%>/member/login.do"><span class="glyphicon glyphicon-log-in">로그인</span> </a>

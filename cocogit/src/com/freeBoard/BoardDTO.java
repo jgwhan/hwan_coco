@@ -2,8 +2,16 @@ package com.freeBoard;
 
 public class BoardDTO { 
 
-	int num,hitCount;
-	String userId,subject,content,created;
+	private int num,hitCount,listNum;
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+	private String userId,subject,content,created,userName;
+	private int groupNum, depth, orderNo, parent; //´äº¯¿ë.
+	
 	public int getNum() {
 		return num;
 	}
@@ -39,6 +47,36 @@ public class BoardDTO {
 	}
 	public void setCreated(String created) {
 		this.created = created;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public int getGroupNum() {
+		return groupNum;
+	}
+	public void setGroupNum(int groupNum) {
+		this.groupNum = groupNum;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	public int getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+	public int getParent() {
+		return parent;
+	}
+	public void setParent(int parent) {
+		this.parent = parent;
 	}
 
 	

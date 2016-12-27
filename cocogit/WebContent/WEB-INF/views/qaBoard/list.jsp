@@ -67,7 +67,7 @@ function selectList() {
 	        <div style="clear: both; height: 35px; line-height: 35px;">
 	            <div style="float: left;">${dataCount}개(${page}/${total_page}페이지)</div>
 	            <div style="float: right;">
-	            	<form name="selectListForm" action="<%=cp%>/board/list.do" method="post">
+	            	<form name="selectListForm" action="<%=cp%>/qaBoard/list.do" method="post">
 	            		<select class="form-control input-sm" name="rows" onchange="selectList();">
 	            			<option value="5" ${rows==5?"selected='selected'":""}>5개씩 보기</option>
 	            			<option value="10"${rows==10?"selected='selected'":""}>10개씩 보기</option>

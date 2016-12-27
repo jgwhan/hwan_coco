@@ -15,6 +15,16 @@
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 <link href="<%=cp%>/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+
+<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;
+	f.action="<%=cp%>/freeBoard/list.do";
+	f.submit();
+}
+</script>
+
 </head>
 <body>
 	<div>
@@ -33,7 +43,7 @@
 
 			<div class="alert alert-info" style="background-color: #D8D8D8; 
 			border-color: activeborder; color: black">
-				<i class="glyphicon glyphicon-star"></i> 자유게시판 입니다 아무말이나 쓰세요
+				<i class="glyphicon glyphicon-star"></i> 자유게시판 입니다 아무말이나 써
 			</div>
 
 			<div>
@@ -76,7 +86,8 @@
 							<c:forEach var="dto" items="${list}">
 								<tr>
 									<td class="text-center">${dto.listNum}</td>
-									<td><%-- <c:if test="${dto.depth>0}">
+									<td>
+									<%-- <c:if test="${dto.depth>0}">
 											<c:forEach var="i" begin="1" end="${dto.depth}">
 		                        			&nbsp;&nbsp;
 		                        		</c:forEach>

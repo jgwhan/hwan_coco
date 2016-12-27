@@ -15,6 +15,15 @@
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 <link href="<%=cp%>/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;
+	f.action="<%=cp%>/javaBoard/list.do";
+	f.submit();
+}
+</script>
+
 </head>
 <body>
 	<div>

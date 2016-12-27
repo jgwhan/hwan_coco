@@ -11,7 +11,7 @@ import com.util.DBConn;
 
 public class JavaBoardDAO {
 	private Connection conn = DBConn.getConnection();
-	
+	 
 	// 데이터 추가하기 
 	public int insertBoard(JavaBoardDTO dto) 
 	{

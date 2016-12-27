@@ -81,19 +81,20 @@
 
 </head>
 <body>
+<div class = container>
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
     
 	    <div class="body-title">
 	          <h3><span class="glyphicon glyphicon-book"></span> 질문과 답변 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
+	    <div class="alert">
+	        <i class="glyphicon-question-sign "></i>  질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
 	    </div>
 	    
 	    <div>
@@ -142,8 +143,8 @@
 	                                          <input type="hidden" name="page" value="${page}">
 	                                          <input type="hidden" name="rows" value="${rows}">
 	                                  </c:if>
-	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
-	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/qaBoard/list.do';"> 취소 </button>
+	                                  <button type="submit" class="btn btn-default"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
+	                                  <button type="button" class="btn btn-default" onclick="javascript:location.href='<%=cp%>/qaBoard/list.do';"> 취소 </button>
 	                            </td>
 	                        </tr>
 	                    </tfoot>
@@ -160,5 +161,6 @@
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

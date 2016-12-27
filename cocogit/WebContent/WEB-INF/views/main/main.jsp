@@ -22,18 +22,66 @@
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 </head>
-
+<body>
+<div class = "container">
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
-<body >
+
 <div class="jumbotron" style="margin-left: 30px; margin-right: 30px">
-  <h1 style="margin-left: 15px">쭈니장군과  함께 IT 공부를!</h1>
+  <h1 style="margin-left: 15px"> &nbsp; 우리들의 IT 이야기 </h1>
   <p style="margin-left: 15px">재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
-  <img alt="" src="images/gengi.gif" style="margin-left: 15px">
+<!--   <img alt="" src="images/gengi.gif" style="margin-left: 15px"> -->
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active" align="center">
+      <img src="images/jj.png" alt="">
+    </div>
+    
+    <div class="item" align="center">
+      <img src="images/js.png" alt="">
+    </div>
+    
+     <div class="item" align="center">
+      <img src="images/gh.png" alt="">
+    </div>
+    
+     <div class="item" align="center">
+      <img src="images/dh.png" alt="">
+    </div>
+    
+     <div class="item" align="center">
+      <img src="images/jh.png" alt="">
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
 </div>
 
 
+</div>
 </body>
 </html>

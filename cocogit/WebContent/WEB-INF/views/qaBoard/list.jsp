@@ -11,7 +11,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=cp%>/bootstrap/css/bootstrap.css" rel="stylesheet">
 <script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -37,7 +36,7 @@
 <script type="text/javascript">
 function searchList() {
 		var f=document.searchForm;
-		f.action="<%=cp%>/board/list.do";
+		f.action="<%=cp%>/qaBoard/list.do";
 		f.submit();
 }
 
@@ -48,18 +47,20 @@ function selectList() {
 </script>
 </head>
 <body>
+
+<div class = container>
 	<div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 	</div>
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
         
 	    <div class="body-title">
 	          <h3><span class="glyphicon glyphicon-book"></span> 질문과 답변 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon-question-sign"></i> 질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
+	    <div class="alert alert-default" role="alert">
+	        <i class="glyphicon-question-sign "></i>  질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
 	    </div>
 	
 	    <div>
@@ -135,16 +136,17 @@ function selectList() {
 							  </select>
 							  <input type="text" class="form-control input-sm input-search" name="searchValue">
 							  <input type="hidden" name="rows" value="${rows}">
-							  <button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();"><span class="glyphicon glyphicon-search"></span> 검색</button>
+							  <button type="button" class="btn btn-default btn-sm btn-search" onclick="searchList();"><span class="glyphicon glyphicon-search"></span> 검색</button>
 	        		     </form>
 	        		</div>
 	        		<div style="float: left; width: 20%; min-width: 85px; text-align: right;">
-	        		    <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/qaBoard/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
+	        		    <button type="button" class="btn btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/qaBoard/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
 	        		</div>
 	        </div>
 	    </div>
 
     </div>
+</div>
 </div>
 
 </body>

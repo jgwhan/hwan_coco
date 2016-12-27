@@ -78,8 +78,13 @@
       
   	  if(mode=="created")
   		f.action="<%=cp%>/freePhoto/created_ok.do";
-  	  else if(mode=="update")
-  		f.action="<%=cp%>/freePhoto/update_ok.do";
+  	  else if(mode=="update"){
+  			if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
+  	  			alert('이미지 파일만 가능합니다. !!!');
+  			}else
+  				f.action="<%=cp%>/freePhoto/update_ok.do";
+  	  }
+  		
 
   	// <input type='submit' ..>,  <input type='image' ..>, <button>은 submit() 메소드 호출하면 두번전송
       return true;
@@ -102,14 +107,14 @@
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
     
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>
+	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 추억의 포토 겔러리를 회원과 공유할 수 있는 공간입니다.
+	    <div class="alert alert-info" style="background: red; color: black">
+	        <i class="glyphicon glyphicon-info-sign"></i> 일단 올려 괜찮아 안짤려 ㅋㅋㅋㅋㅋ
 	    </div>
 	    
 	    <div>
@@ -153,7 +158,7 @@
                             <tr>
                                 <td class="td1">등록이미지</td>
                                 <td colspan="3" class="td3">
-                                    <img src="<%=cp%>/uploads/photo/${dto.imageFilename}"
+                                    <img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}"
 				                     width="30" height="30" border="0"
 				                     onclick="imageViewer('<%=cp%>/uploads/freePhoto/${dto.imageFilename}');"
 				                     style="cursor: pointer;">
@@ -164,16 +169,17 @@
 	                    </tbody>
 	                    <tfoot>
 	                        <tr>
-	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
-	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
-	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/freePhoto/list.do';"> 취소 </button>
-	                                  
-	                                  <c:if test="${mode=='update'}">
+	                         <c:if test="${mode=='update'}">
                                           <input type="hidden" name="num" value="${dto.num}">
                                           <input type="hidden" name="userId" value="${dto.userId}">
                                           <input type="hidden" name="imageFilename" value="${dto.imageFilename}">
                                           <input type="hidden" name="page" value="${page}">
 	                                  </c:if>
+	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
+	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
+	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/freePhoto/list.do';"> 취소 </button>
+	                                  
+	                                 
 	                            </td>
 	                        </tr>
 	                    </tfoot>

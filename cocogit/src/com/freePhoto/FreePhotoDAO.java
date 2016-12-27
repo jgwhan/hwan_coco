@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.util.DBConn;
 
 public class FreePhotoDAO {
@@ -144,4 +145,50 @@ public class FreePhotoDAO {
 		return dto;
 	}
 
+	
+	
+	public int deletePhoto(int num) {
+		// TODO Auto-generated method stub
+		int result=0;
+	      PreparedStatement pstmt = null;
+	      String sql;
+	      
+	      try {
+	         sql="DELETE FROM photoboard WHERE num=?";
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setInt(1, num);
+	         
+	         result = pstmt.executeUpdate();
+	         pstmt.close();
+	         
+	      } catch (Exception e) {
+	         System.out.println(e.toString());
+	      }
+	      return result;
+	}
+	
+	public int updatePhoto(FreePhotoDTO dto) {
+    	int result=0;
+    	PreparedStatement pstmt=null;
+    	String sql;
+    	
+    	try {
+			sql="UPDATE photoboard SET subject=?, content=?, imageFilename=?";
+			sql+="  WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getSubject());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getImageFilename());
+			pstmt.setInt(4, dto.getNum());
+			
+			result=pstmt.executeUpdate();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+    	return result;
+    }
+
+	
 }

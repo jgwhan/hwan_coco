@@ -52,7 +52,7 @@
 <script type="text/javascript">
 function updatePhoto(num) {
 	<c:if test="${sessionScope.member.userId==dto.userId}">
-	     var url="<%=cp%>/photo/update.do?num="+num+"&page=${page}";
+	     var url="<%=cp%>/freePhoto/update.do?num="+num+"&page=${page}";
 	     location.href=url;
 	</c:if>
 }
@@ -60,7 +60,7 @@ function updatePhoto(num) {
 function deletePhoto(num) {
 	<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
          if(confirm("게시물을 삭제 하시겠습니까 ?")) {
-        	 var url="<%=cp%>/photo/delete.do?num="+num+"&page=${page}";
+        	 var url="<%=cp%>/freePhoto/delete.do?num="+num+"&page=${page}";
         	 location.href=url;
          }	
 	</c:if>
@@ -74,14 +74,14 @@ function deletePhoto(num) {
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
 
 	    <div class="body-title">
 	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 추억의 포토 겔러리를 회원과 공유할 수 있는 공간입니다.
+	    <div class="alert alert-info" style="background: red; color: black">
+	        <i class="glyphicon glyphicon-info-sign"></i> 어떰? 괜춘??
 	    </div>
 	    
 	    <div class="table-responsive" style="clear: both;">
@@ -105,7 +105,7 @@ function deletePhoto(num) {
 	                     </tr>
                          <tr style="border-bottom:none;">
                              <td colspan="2">
-                                 <img src="<%=cp%>/uploads/photo/${dto.imageFilename}" style="max-width:100%; height:auto; resize:both;">
+                                 <img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}" style="max-width:100%; height:auto; resize:both;">
                              </td>
                          </tr>
 	                     <tr>

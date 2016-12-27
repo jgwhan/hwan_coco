@@ -11,9 +11,9 @@
  a:visited { color: black; text-decoration: none;}
  a:hover { color: black; text-decoration: none;}
 </style>
-
+<div class = "container">
 	<div class="main-a">
-	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 쭈니장군의 일망타진 IT 블로그 </a></h2>
+	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 객체지향 IT 블로그   </a></h2>
 	</div>
 	
 <div class="login header-login" align="right" style="margin-right: 30px;" >
@@ -50,7 +50,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
         <li class="active"><a href="<%=cp%>/freeBoard/list.do">자유게시판 <span class="sr-only">(current)</span></a></li>
-        <li><a href="<%=cp%>/freePhoto/list.do">자유갤러리</a></li>
+        <li><a href="<%=cp%>/freePhoto/list.do">엄빠주의!!</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">공부게시판 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -74,3 +74,4 @@
     </div>
   </div>
 </nav>  
+</div>

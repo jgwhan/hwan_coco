@@ -2,25 +2,33 @@ package com.freeBoard;
 
 public class BoardDTO { 
 
-	int num,hitcount;
-	String userid,subject,content,created;
+	private int num,hitCount,listNum;
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+	private String userId,subject,content,created,userName;
+	private int groupNum, depth, orderNo, parent; //´äº¯¿ë.
+	
 	public int getNum() {
-		return num; 
+		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getHitcount() {
-		return hitcount;
+	public int getHitCount() {
+		return hitCount; 
 	}
-	public void setHitcount(int hitcount) {
-		this.hitcount = hitcount;
+	public void setHitCount(int hitCount) {
+		this.hitCount = hitCount;
 	}
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getSubject() {
 		return subject;
@@ -40,7 +48,40 @@ public class BoardDTO {
 	public void setCreated(String created) {
 		this.created = created;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public int getGroupNum() {
+		return groupNum;
+	}
+	public void setGroupNum(int groupNum) {
+		this.groupNum = groupNum;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	public int getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+	public int getParent() {
+		return parent;
+	}
+	public void setParent(int parent) {
+		this.parent = parent;
+	}
 
+	
+	
+	
 	
 	
 }

@@ -24,7 +24,7 @@
 	height: 230px;
 	padding: 5px 5px 5px;
 	margin: 5px;
-	border: 1px solid #DAD9FF;
+	border: 1px solid #f00;
 	float: left;
 }
 
@@ -33,13 +33,20 @@
      height:25px;
      line-height:25px;
      margin:5px auto 0px;
-     border-top: 1px solid #DAD9FF;
+     border: 1px solid #f00;
+     /* border-top: 1px solid #DAD9FF; */
      display: inline-block;
      white-space:nowrap;			/* 1 글씨가 오버되면 뒤에 짤리는건 ...으로 표시됨 밑에 두개랑 같이 3개가 셋트로 써야됨 */
      overflow:hidden;				/* 2 */
      text-overflow:ellipsis;		/* 3 */
      cursor: pointer;
      text-align: center;
+}
+
+.subject2 {
+    
+     cursor: pointer;
+     
 }
 </style>
 
@@ -59,14 +66,14 @@ function article(num) {
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
         
-	    <div class="body-title">
+	    <div class="body-title" style="color: red">
 	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 추억의 포토 갤러리를 회원과 공유할 수 있는 공간입니다.
+	    <div class="alert alert-info" style="background: red; color: black">
+	        <i class="glyphicon glyphicon-info-sign"></i> 가릴거 다 가린 추억을 공유하세요!!! 
 	    </div>
 	
 	    <div style="max-width:660px; margin: 0px auto;">
@@ -85,7 +92,10 @@ function article(num) {
 	                        <c:out value="</div><div style='clear: both; max-width:660px; margin: 0px auto;'>" escapeXml="false"/>
 	                 </c:if>
 				      <div class="imgLayout">
-		                      <img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}" style="width: 190px; height: 190px;" border="0">
+		                     <span class="subject2" onclick="javascript:article('${dto.num}');">
+		                      	<img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}" style="width: 190px; height: 190px;" border="0" class="img-circle">
+		                     </span>
+		                      
 				             <span class="subject" onclick="javascript:article('${dto.num}');" >
 				                   ${dto.subject}
 				             </span>

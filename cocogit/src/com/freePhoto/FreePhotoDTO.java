@@ -1,13 +1,23 @@
 package com.freePhoto;
 
+import java.sql.Date;
+
 public class FreePhotoDTO {
 private int num, listNum;
 private int hitCount;
+private Date birth;
 private String userId, userName;
 private String subject, content, imageFilename;
 private String created;
 
 
+
+public Date getBirth() {
+	return birth;
+}
+public void setBirth(Date birth) {
+	this.birth = birth;
+}
 public int getNum() {
 	return num;
 }
@@ -62,4 +72,5 @@ public String getCreated() {
 public void setCreated(String created) {
 	this.created = created;
 }
+
 }

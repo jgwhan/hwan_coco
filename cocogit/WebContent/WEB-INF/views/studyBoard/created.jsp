@@ -13,10 +13,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>spring</title>
+
 <link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 .bs-write table {
     width: 100%;
@@ -66,13 +66,11 @@
             return false;
         }
 
-        var mode="${mode}";
+    	var mode="${mode}";
     	if(mode=="created")
-    		f.action="<%=cp%>/qaBoard/created_ok.do";
+    		f.action="<%=cp%>/studyBoard/created_ok.do";
     	else if(mode=="update")
-    		f.action="<%=cp%>/qaBoard/update_ok.do";
-       	else if(mode=="reply")
-       		f.action="<%=cp%>/qaBoard/reply_ok.do";
+    		f.action="<%=cp%>/studyBoard/update_ok.do";
 
     	// <input type='submit' ..>,  <input type='image' ..>, <button>은 submit() 메소드 호출하면 두번전송
         return true;
@@ -81,7 +79,7 @@
 
 </head>
 <body>
-<div class = container>
+
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
@@ -90,11 +88,11 @@
     <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
     
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-book"></span> 질문과 답변 </h3>
+	          <h3><span class="glyphicon glyphicon-book"></span> 스터디 모집 </h3>
 	    </div>
 	    
-	    <div class="alert">
-	        <i class="glyphicon-question-sign "></i>  질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
+	    <div class="alert alert-info" style="background-color: gray;color: black;border-color: activeborder;">
+	        <i class="glyphicon glyphicon-info-sign" style="black"></i> 프로그래밍 공부를 위한 스터디를 모집하세요.
 	    </div>
 	    
 	    <div>
@@ -130,21 +128,13 @@
 	                    <tfoot>
 	                        <tr>
 	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
-	                                  <c:if test="${mode=='update'}">
-	                                          <input type="hidden" name="boardNum" value="${dto.boardNum}">
-	                                          <input type="hidden" name="page" value="${page}">
-	                                          <input type="hidden" name="rows" value="${rows}">
-	                                  </c:if>
-	                                  <c:if test="${mode=='reply'}">
-	                                          <input type="hidden" name="groupNum" value="${dto.groupNum}">
-	                                          <input type="hidden" name="depth" value="${dto.depth}">
-	                                          <input type="hidden" name="orderNo" value="${dto.orderNo}">
-	                                          <input type="hidden" name="parent" value="${dto.boardNum}">
-	                                          <input type="hidden" name="page" value="${page}">
-	                                          <input type="hidden" name="rows" value="${rows}">
-	                                  </c:if>
 	                                  <button type="submit" class="btn btn-default"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
-	                                  <button type="button" class="btn btn-default" onclick="javascript:location.href='<%=cp%>/qaBoard/list.do';"> 취소 </button>
+	                                  <button type="button" class="btn btn-default" onclick="javascript:location.href='<%=cp%>/studyBoard/list.do';"> 취소 </button>
+	                                  
+	                                  <c:if test="${mode=='update'}">
+	                                      <input type="hidden" name="num" value="${dto.num}">
+	                                      <input type="hidden" name="page" value="${page}">
+	                                  </c:if>
 	                            </td>
 	                        </tr>
 	                    </tfoot>
@@ -156,14 +146,12 @@
     </div>
 </div>
 
-
+<div>
+    <jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
+</div>
 
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script>
-</div>
-<div>
-    <jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
-</div>
 </body>
 </html>

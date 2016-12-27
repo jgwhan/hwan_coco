@@ -151,5 +151,8 @@ function deleteBoard(num) {
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script>
 </div>
+<div>
+    <jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

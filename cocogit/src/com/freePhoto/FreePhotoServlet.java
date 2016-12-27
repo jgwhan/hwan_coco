@@ -105,7 +105,9 @@ public class FreePhotoServlet extends MyServlet {
 		req.setAttribute("total_page", total_page);
 		req.setAttribute("articleUrl", articleUrl);
 		req.setAttribute("paging", paging);
-		
+		FreePhotoDTO dto=new FreePhotoDTO();
+		dto.setUserId(info.getUserId());
+	
 		forward(req, resp, "/WEB-INF/views/freePhoto/list.jsp");
 	}
 	

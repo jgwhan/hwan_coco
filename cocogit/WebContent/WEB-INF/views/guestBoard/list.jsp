@@ -77,7 +77,7 @@ function deleteGuest(num, uid) {
 				    <form name="guestForm" method="post" action="">
                     <div class="guest-write">
                         <div style="clear: both;">
-           	                 <span style="font-weight: bold;">방명록쓰기</span><span> - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span>
+           	                 <span style="font-weight: bold;">방명록쓰기</span><span> - 방명록이셈~ 암거나 쓰셈~ 헤헿</span>
                         </div>
                         <div style="clear: both; padding-top: 10px;">
                               <textarea name="content" id="content" class="boxTF" rows="3" style="display:block; width: 100%; padding: 6px 12px; box-sizing:border-box;" required="required"></textarea>

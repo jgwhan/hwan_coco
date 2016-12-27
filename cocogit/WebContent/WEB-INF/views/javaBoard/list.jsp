@@ -43,17 +43,7 @@
 					<div style="float: right;">
 						<form name="selectListForm" action="<%=cp%>/javaBoard/list.do"
 							method="post">
-							<select class="form-control input-sm" name="rows"
-								onchange="selectList()">
-								<option value="5" ${rows==5?"selected='selected'":""}>5개씩
-									출력</option>
-								<option value="10" ${rows==10?"selected='selected'":""}>10개씩
-									출력</option>
-								<option value="20" ${rows==20?"selected='selected'":""}>20개씩
-									출력</option>
-								<option value="30" ${rows==30?"selected='selected'":""}>30개씩
-									출력</option>
-							</select> <input type="hidden" name="searchKey" value="${searchKey}">
+						<input type="hidden" name="searchKey" value="${searchKey}">
 							<input type="hidden" name="searchValue" value="${searchValue}">
 						</form>
 					</div>

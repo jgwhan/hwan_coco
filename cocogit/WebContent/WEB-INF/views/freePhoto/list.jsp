@@ -66,7 +66,7 @@ function article(num) {
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
         
 	    <div class="body-title" style="color: red">
 	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>

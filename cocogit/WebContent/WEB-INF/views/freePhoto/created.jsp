@@ -100,7 +100,7 @@
 </script>
 
 </head>
-<body>
+<body style="background: #f37070">
 
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
@@ -109,7 +109,7 @@
 <div class="container" role="main">
     <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
     
-	    <div class="body-title" style="color: red">
+	    <div class="body-title" style="color: white; border: 5px; border-color: white; ">
 	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>
 	    </div>
 	    

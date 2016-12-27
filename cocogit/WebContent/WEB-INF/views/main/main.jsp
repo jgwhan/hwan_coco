@@ -40,10 +40,9 @@
 				data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
-					<li data-target="#carousel-example-generic" data-slide-to="0"
-						class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="0"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
 					<li data-target="#carousel-example-generic" data-slide-to="4"></li>
 
@@ -51,7 +50,8 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-					<div class="item active" align="center">
+				
+					<div class="item" align="center">
 						<img src="images/jj.png" alt="">
 					</div>
 
@@ -59,7 +59,7 @@
 						<img src="images/js.png" alt="">
 					</div>
 
-					<div class="item" align="center">
+					<div class="item active" align="center">
 						<img src="images/gh.png" alt="">
 					</div>
 

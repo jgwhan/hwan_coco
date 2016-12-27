@@ -23,13 +23,15 @@ a:visited {
 a:hover {
 	color: black;
 	text-decoration: none;
+	
 }
 </style>
 <div class="container">
+	<div style="background-image: url('images/pattern2.png');" >
 	<div class="main-a">
 		<h1 style="margin-left: 30px; font-family: 'Hanna', serif;" >
-			<a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span>
-				<strong>객체지향 IT 블로그</strong> </a>
+			<a href="<%=cp%>/"><span class="glyphicon glyphicon-star"></span>
+				<strong>★객체지향 IT 블로그</strong> </a>
 		</h1>
 	</div>
 
@@ -52,6 +54,7 @@ a:hover {
 			<a href="<%=cp%>/member/logout.do"><span
 				class="glyphicon glyphicon-log-out"></span> 로그아웃</a>
 		</c:if>
+	</div>
 	</div>
 
 

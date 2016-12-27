@@ -14,14 +14,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>spring</title>
 
-<link rel="stylesheet" href="<%=cp%>/jquery/css/smoothness/jquery-ui.min.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap.min.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
+<link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
+<script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+<link href="<%=cp%>/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-<link rel="stylesheet" href="<%=cp%>/css/style.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css"/>
 <style type="text/css">
-.bs-write table { 
+.bs-write table {
     width: 100%;
     border: 0;
     border-spacing: 0;
@@ -42,17 +41,9 @@
     vertical-align: middle;
 }
 
-.bs-write .td2 {
-}
-
-.bs-write .td3 {
-}
-
-.bs-write .td4 {
-}
 </style>
 
-<script type="text/javascript" src="<%=cp%>/jquery/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
   function check() {
         var f = document.boardForm;
@@ -69,15 +60,12 @@
             return false;
         }
 
-        var mode="${mode}";
+    	var mode="${mode}";
     	if(mode=="created")
     		f.action="<%=cp%>/freeBoard/created_ok.do";
     	else if(mode=="update")
-    		f.action="<%=cp%>/board/update_ok.do";
-    	else if(mode=="reply")
-        	f.action="<%=cp%>/board/reply_ok.do";
+    		f.action="<%=cp%>/freeBoard/update_ok.do";
 
-    	// <input type='submit' ..>,  <input type='image' ..>, <button>은 submit() 메소드 호출하면 두번전송
         return true;
  }
 </script>
@@ -88,16 +76,20 @@
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
+
 <div class="container" role="main">
     <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
     
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-book"></span> 자유게시판 </h3>
-	    </div>
-	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 자게입니다 아무말이나 ㄱㄱ
-	    </div>
+				<h3>
+					<span class="glyphicon glyphicon-education"></span> 자유 게시판 
+				</h3>
+			</div>
+
+			<div class="alert alert-info" style="background-color: #D8D8D8; 
+			border-color: activeborder; color: black">
+				<i class="glyphicon glyphicon-leaf"></i> ㅁㄴ이ㅏ러ㅏㅣㄴ어린;망러ㅁㄴㅇㄹㄴㅇㄻ
+			</div>
 	    
 	    <div>
 	        <form name="boardForm" method="post" onsubmit="return check();">
@@ -133,7 +125,12 @@
 	                        <tr>
 	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
 	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
-	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/board/list.do';"> 취소 </button>
+	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/freeBoard/list.do';"> 취소 </button>
+	                                  
+	                                  <c:if test="${mode=='update'}">
+	                                      <input type="hidden" name="num" value="${dto.num}">
+	                                      <input type="hidden" name="page" value="${page}">
+	                                  </c:if>
 	                            </td>
 	                        </tr>
 	                    </tfoot>
@@ -145,12 +142,12 @@
     </div>
 </div>
 
-<div>
-    <jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
-</div>
-
-<script type="text/javascript" src="<%=cp%>/jquery/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/jquery/js/jquery.ui.datepicker-ko.js"></script>
-<script type="text/javascript" src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+	<div>
+		<jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
+	</div>
+<%-- 
+	<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script> --%>
 </body>
 </html>

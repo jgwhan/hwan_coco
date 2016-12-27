@@ -1,17 +1,14 @@
 package com.freeBoard;
 
-public class BoardDTO {
-	private int listNum, num;
-	private String userId, userName;
-	private String subject, content;
-	private String created;
-	private int hitCount;
+public class ReplyDTO {
+	private int replyNum, num;
+	private String userId, userName, content, created;
 	
-	public int getListNum() {
-		return listNum;
+	public int getReplyNum() {
+		return replyNum;
 	}
-	public void setListNum(int listNum) {
-		this.listNum = listNum;
+	public void setReplyNum(int replyNum) {
+		this.replyNum = replyNum;
 	}
 	public int getNum() {
 		return num;
@@ -31,13 +28,7 @@ public class BoardDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getSubject() {
-		return subject; 
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	public String getContent() {
+	public String getContent() { 
 		return content;
 	}
 	public void setContent(String content) {
@@ -48,11 +39,5 @@ public class BoardDTO {
 	}
 	public void setCreated(String created) {
 		this.created = created;
-	}
-	public int getHitCount() {
-		return hitCount;
-	}
-	public void setHitCount(int hitCount) {
-		this.hitCount = hitCount;
 	}
 }

@@ -114,7 +114,7 @@ public class FreePhotoDAO {
 
 		try {
 			sb.append("SELECT num, p.userId, userName, ");
-			sb.append("subject, content, IMAGEFILENAME, created");
+			sb.append("subject, content, hitCount, IMAGEFILENAME, created");
 			sb.append("  FROM  photoboard p");
 			sb.append("  JOIN member1 m ON p.userId = m.userId ");
 			sb.append("  WHERE num=?");
@@ -131,6 +131,7 @@ public class FreePhotoDAO {
 				dto.setUserId(rs.getString("userId"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
+				dto.setHitCount(rs.getInt("hitCount"));
 				dto.setImageFilename(rs.getString("IMAGEFILENAME"));
 				dto.setCreated(rs.getString("created"));
 
@@ -189,6 +190,26 @@ public class FreePhotoDAO {
 		}
     	return result;
     }
+	
+	
+	public int updateHitCount(int num) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql;
+		try {
+			sql="UPDATE photoboard SET hitCount=hitCount+1";
+			sql+="    WHERE num=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result=pstmt.executeUpdate();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 
 	
 }

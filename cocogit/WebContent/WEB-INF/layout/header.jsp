@@ -72,7 +72,7 @@ a:hover {
 					<li class="active"><a href="<%=cp%>/freeBoard/list.do">자유게시판
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li><a href="<%=cp%>/freePhoto/list.do">자유갤러리</a></li>
+					<li><a href="<%=cp%>/freePhoto/list.do">엄빠주의!!</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"
 						aria-haspopup="true">공부게시판 <span class="caret"></span></a>

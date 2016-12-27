@@ -24,7 +24,7 @@
 	height: 230px;
 	padding: 5px 5px 5px;
 	margin: 5px;
-	border: 1px solid #f00;
+	/* border: 1px solid #f00; */
 	float: left;
 }
 
@@ -33,7 +33,7 @@
      height:25px;
      line-height:25px;
      margin:5px auto 0px;
-     border: 1px solid #f00;
+    /*  border: 1px solid #f00; */
      /* border-top: 1px solid #DAD9FF; */
      display: inline-block;
      white-space:nowrap;			/* 1 글씨가 오버되면 뒤에 짤리는건 ...으로 표시됨 밑에 두개랑 같이 3개가 셋트로 써야됨 */

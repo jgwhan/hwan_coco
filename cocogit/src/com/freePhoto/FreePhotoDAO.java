@@ -1,8 +1,10 @@
 package com.freePhoto;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -193,6 +195,7 @@ public class FreePhotoDAO {
 	
 	
 	public int updateHitCount(int num) {
+		
 		int result=0;
 		PreparedStatement pstmt=null;
 		String sql;
@@ -211,5 +214,33 @@ public class FreePhotoDAO {
 		return result;
 	}
 
+	public int readPhoto2(String str) {
+		FreePhotoDTO dto=null;
+    	int result=0;
+    	PreparedStatement pstmt=null;
+    	ResultSet rs=null;
+    	String sql;
+    	
+    	
+    	
+    	try {
+			sql="select birth from member1 ";
+			sql+="  WHERE userId="+str;
+			pstmt=conn.prepareStatement(sql);
+			
+			
+			if(rs.next()) {
+                dto=new FreePhotoDTO();
+                
+             
+            }
+			
+			result=pstmt.executeUpdate();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+    	return result;
+    }
 	
 }

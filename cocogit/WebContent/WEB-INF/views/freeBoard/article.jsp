@@ -19,7 +19,7 @@
 
 
 <style type="text/css">
-.bbs-article .table {
+.bbs-article .table { 
     margin-top: 15px;
 }
 .bbs-article .table thead tr, .bbs-article .table tbody tr {

@@ -33,7 +33,7 @@ public class BoardDAO {
 			
 			result = pstmt.executeUpdate();
 			pstmt.close();
-			
+			 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

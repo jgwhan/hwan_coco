@@ -135,7 +135,7 @@ function selectList(){
 	           ${paging}	           
 	           </c:if>
 	          
-	        </div>        
+	        </div>         
 	        
 	        <div style="clear: both;">
 	        		<div style="float: left; width: 20%; min-width: 85px;">

@@ -19,7 +19,7 @@ public class BoardDTO {
 		this.num = num;
 	}
 	public int getHitCount() {
-		return hitCount;
+		return hitCount; 
 	}
 	public void setHitCount(int hitCount) {
 		this.hitCount = hitCount;

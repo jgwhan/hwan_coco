@@ -89,7 +89,7 @@ public class BoardServlet extends MyServlet {
 			String paging=util.paging(current_page,
 					total_page, listUrl);
 			
-			req.setAttribute("list", list);
+			req.setAttribute("list", list); 
 			req.setAttribute("page", current_page);
 			req.setAttribute("dataCount", dataCount);
 			req.setAttribute("total_page", total_page);

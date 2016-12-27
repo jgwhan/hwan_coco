@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="<%=cp%>/css/style.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css"/>
 <style type="text/css">
-.bs-write table {
+.bs-write table { 
     width: 100%;
     border: 0;
     border-spacing: 0;

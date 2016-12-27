@@ -137,8 +137,11 @@
 			</div>
 
 		</div>
+		
+		<div>
+			<jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
+		</div>
 	</div>
-
 
 </body>
 </html>

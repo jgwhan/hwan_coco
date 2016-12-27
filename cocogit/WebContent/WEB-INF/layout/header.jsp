@@ -2,6 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+
 <%
    request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -25,10 +27,10 @@ a:hover {
 </style>
 <div class="container">
 	<div class="main-a">
-		<h2 style="margin-left: 30px;">
+		<h1 style="margin-left: 30px; font-family: 'Hanna', serif;" >
 			<a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span>
-				객체지향 IT 블로그 </a>
-		</h2>
+				<strong>객체지향 IT 블로그</strong> </a>
+		</h1>
 	</div>
 
 	<div class="login header-login" align="right"
@@ -63,16 +65,15 @@ a:hover {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">소개</a>
+				<!-- <a class="navbar-brand" href="#">소개</a> -->
 			</div>
 
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-2">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<%=cp%>/freeBoard/list.do">자유게시판
+					<li><a href="<%=cp%>/freeBoard/list.do">자유게시판
 							<span class="sr-only">(current)</span>
-					</a></li>
-					<li><a href="<%=cp%>/freePhoto/list.do">엄빠주의!!</a></li>
+					</a></li>				
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"
 						aria-haspopup="true">공부게시판 <span class="caret"></span></a>
@@ -82,6 +83,7 @@ a:hover {
 							<li><a href="<%=cp%>/studyBoard/list.do">스터디모집</a></li>
 						</ul></li>
 					<li><a href="<%=cp%>/qaBoard/list.do">질문게시판</a></li>
+					<li><a href="<%=cp%>/freePhoto/list.do">엄빠주의!!</a></li>
 					<li><a href="<%=cp%>/guestBoard/list.do">방명록</a></li>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">

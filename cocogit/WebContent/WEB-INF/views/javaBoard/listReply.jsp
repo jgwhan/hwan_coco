@@ -7,7 +7,7 @@
 %>
 
      <div style="clear: both; padding-top: 20px;">
- 	       <div style="float: left;"><span style="color: #3EA9CD; font-weight: bold;">댓글 ${dataCount}개</span> <span>[댓글 목록, ${pageNo}/${total_page} 페이지]</span></div>
+ 	       <div style="float: left;"><span style=" font-weight: bold;">댓글 ${dataCount}개</span> <span>[댓글 목록, ${pageNo}/${total_page} 페이지]</span></div>
  	       <div style="float: right; text-align: right;"></div>
     </div>
     

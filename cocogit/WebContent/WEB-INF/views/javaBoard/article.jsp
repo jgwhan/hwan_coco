@@ -200,7 +200,7 @@ function deleteReply(replyNum, pageNo, userId) {
 	            <table class="table">
 	                 <thead>
 	                     <tr>
-	                         <th colspan="2" style="text-align: center;">
+	                         <th colspan="2" style="text-align: center; background-color: #F6F6F6;">
 	                                 ${dto.subject}
 	                         </th>
 	                     </tr>
@@ -240,15 +240,18 @@ function deleteReply(replyNum, pageNo, userId) {
 	                	<tr>
 	                		<td>
 		                        <c:if test="${sessionScope.member.userId==dto.userId}">		                		
-	                		        <button type="button" class="btn btn-default btn-sm wbtn" onclick="updateBoard();">수정</button>
+	                		        <button type="button" class="btn btn-primary btn-sm wbtn" onclick="updateBoard();"
+	                		        style="background-color: gray; border-color: gray">수정</button>
 	                		    </c:if>
 		                        <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">    
-	                		        <button type="button" class="btn btn-default btn-sm wbtn" onclick="deleteBoard();">삭제</button>
+	                		        <button type="button" class="btn btn-primary btn-sm wbtn" onclick="deleteBoard();"
+	                		        style="background-color: gray; border-color: gray">삭제</button>
 	                		    </c:if>
 	                		</td>
 	                		<td align="right">
-	                		    <button type="button" class="btn btn-default btn-sm wbtn"
-	                		                onclick="javascript:location.href='<%=cp%>/javaBoard/list.do?${params}';"> 목록으로 </button>
+	                		    <button type="button" class="btn btn-primary btn-sm wbtn"
+	                		                onclick="javascript:location.href='<%=cp%>/javaBoard/list.do?${params}';"
+	                		                style="background-color: black; border-color: black" > 목록으로 </button>
 	                		</td>
 	                	</tr>
 	                </tfoot>
@@ -265,7 +268,8 @@ function deleteReply(replyNum, pageNo, userId) {
 	                   <textarea id="content" class="form-control" rows="3" required="required"></textarea>
 	               </div>
 	               <div style="text-align: right; padding-top: 10px;">
-	                   <button type="button" class="btn btn-primary btn-sm" onclick="sendReply();"> 댓글등록 <span class="glyphicon glyphicon-ok"></span></button>
+	                   <button type="button" class="btn btn-primary btn-sm" onclick="sendReply();"
+	                	   style="background-color: black; border-color: black"> 댓글등록 <span class="glyphicon glyphicon-ok"></span></button>
 	               </div>           
 	           </div>
 	       
@@ -277,11 +281,11 @@ function deleteReply(replyNum, pageNo, userId) {
     </div>
 </div>
 
-<div>
-<%--     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include> --%>
-</div>
+	<div>
+		<jsp:include page="/WEB-INF/layout/footer.jsp"></jsp:include>
+	</div>
 
-<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script>
 </body>

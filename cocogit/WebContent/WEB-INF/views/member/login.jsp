@@ -13,6 +13,7 @@
 <link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
 
 <style type="text/css">
 .form-signin {
@@ -85,10 +86,11 @@ function sendLogin() {
 </div>
 
 <div class="container" role="main">
-
+	
     <div class="bodyFrame">
     <form class="form-signin" name="loginForm" method="post">
-        <h2 class="form-signin-heading">Log In</h2>
+    <h2 style="font-family: 'Hanna', serif;" align="center">객체지향 IT 블로그에 오신 걸<br> 환영합니다 !</h2>
+        <h1 class="form-signin-heading" style="font-family: 'Hanna', serif; color: blue;">LOG-IN</h1>
         <label for="userId" id="lblUserId" class="lbl">아이디</label>
         <input type="text" id="userId" name="userId" class="form-control loginTF" autofocus="autofocus"
                   onfocus="document.getElementById('lblUserId').style.display='none';"
@@ -97,7 +99,8 @@ function sendLogin() {
         <input type="password" id="userPwd" name="userPwd" class="form-control loginTF"
                   onfocus="document.getElementById('lblUserPwd').style.display='none';"
 	              onblur="bgLabel(this, 'lblUserPwd');">
-        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="sendLogin();">로그인 <span class="glyphicon glyphicon-ok"></span></button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="sendLogin();
+        	" style="background-color: black;">로그인 <span class="glyphicon glyphicon-ok"></span></button>
         
         <div style="margin-top:10px; text-align: center;">
             <button type="button" class="btn btn-link" onclick="location.href='<%=cp%>/member/member.do';">회원가입</button>
@@ -110,10 +113,6 @@ function sendLogin() {
     </form>
     </div>
 </div>
-<%-- 
 
-<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script> --%>
 </body>
 </html>

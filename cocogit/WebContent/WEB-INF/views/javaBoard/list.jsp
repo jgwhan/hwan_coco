@@ -41,7 +41,7 @@
 					<div style="float: left;">${dataCount}개(${page}/${total_page}
 						페이지)</div>
 					<div style="float: right;">
-						<form name="selectListForm" action="<%=cp%>/board/list.do"
+						<form name="selectListForm" action="<%=cp%>/javaBoard/list.do"
 							method="post">
 							<select class="form-control input-sm" name="rows"
 								onchange="selectList()">
@@ -80,7 +80,7 @@
 											<c:forEach var="i" begin="1" end="${dto.depth}">
 		                        			&nbsp;&nbsp;
 		                        		</c:forEach>
-											<img src="<%=cp%>/res/images/re.gif">
+											<img src="<%=cp%>/images/re.gif">
 										</c:if> <a href="${articleUrl}&boardNum=${dto.boardNum}">${dto.subject}</a>
 									</td>
 									<td class="text-center">${dto.userName}</td>
@@ -106,7 +106,7 @@
 				<div style="clear: both;">
 					<div style="float: left; width: 20%; min-width: 85px;">
 						<button type="button" class="btn btn-default btn-sm wbtn"
-							onclick="javascript:location.href='<%=cp%>/board/list.do';">새로고침</button>
+							onclick="javascript:location.href='<%=cp%>/javaBoard/list.do';">새로고침</button>
 					</div>
 					<div style="float: left; width: 60%; text-align: center;">
 						<form name="searchForm" method="post" class="form-inline">
@@ -127,7 +127,7 @@
 					<div
 						style="float: left; width: 20%; min-width: 85px; text-align: right;">
 						<button type="button" class="btn btn-primary btn-sm bbtn"
-							onclick="javascript:location.href='<%=cp%>/board/created.do';" 
+							onclick="javascript:location.href='<%=cp%>/javaBoard/created.do';" 
 							style="background-color: black; border-color: black">
 							<span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기
 						</button>

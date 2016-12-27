@@ -12,7 +12,7 @@ import com.util.DBConn;
 public class JavaBoardDAO {
 	private Connection conn = DBConn.getConnection();
 	
-	// 데이터 추가
+	// 데이터 추가하기 
 	public int insertBoard(JavaBoardDTO dto) 
 	{
 		int result = 0;
@@ -20,121 +20,99 @@ public class JavaBoardDAO {
 		StringBuffer sb = new StringBuffer();
 		
 		try {
-			sb.append("INSERT INTO semi(num, userId, subject, content) ");
-			sb.append(" VALUES (semi_seq.NEXTVAL, ?, ?, ?)");
+			sb.append("INSERT INTO javaboard(num, userId, subject, content) ");
+			sb.append(" VALUES (javaboard_seq.NEXTVAL, ?, ?, ?)");
 			
-			pstmt=conn.prepareStatement(sb.toString());
+			pstmt = conn.prepareStatement(sb.toString());
 			pstmt.setString(1, dto.getUserId());
 			pstmt.setString(2, dto.getSubject());
 			pstmt.setString(3, dto.getContent());
 			
-			result=pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
+			pstmt.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(pstmt!=null)
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
 		}
 		
 		return result;
 	}
 	
-	public int dataCount() {
-		int result=0;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+	// 데이터 갯수 세어오기 
+	public int dataCount() 
+	{
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql;
 		
 		try {
-			sql="SELECT NVL(COUNT(*), 0) FROM bbs";
-			pstmt=conn.prepareStatement(sql);
+			sql = "select NVL(count(*), 0) from javaboard";
+			pstmt = conn.prepareStatement(sql);
 			
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if(rs.next())
-				result=rs.getInt(1);
+				result = rs.getInt(1);
+			
+			rs.close();
+			pstmt.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+		} 
 		
 		return result;
 	}
 
-	// 검색에서의 데이터 개수
-	public int dataCount(String searchKey, String searchValue) {
-		int result=0;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+	// 검색했을 때의 데이터 개수 세어오기 
+	public int dataCount(String searchKey, String searchValue) 
+	{
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql;
 		
 		try {
-			sql="SELECT NVL(COUNT(*), 0)  FROM bbs b JOIN member1 m ON b.userId=m.userId ";
+			sql = "select NVL(count(*), 0)  from javaboard j JOIN member1 m ON j.userId=m.userId ";
 			if(searchKey.equals("userName"))
-				sql+="  WHERE INSTR(userName, ?) = 1 ";
+				sql += "  where INSTR(userName, ?) = 1 ";
 			else if(searchKey.equals("created"))
-				sql+="  WHERE TO_CHAR(created, 'YYYY-MM-DD') = ? ";
+				sql += "  where TO_CHAR(created, 'YYYY-MM-DD') = ? ";
 			else
-				sql+="  WHERE INSTR(" + searchKey+ ", ?) >= 1 ";
+				sql += "  where INSTR(" + searchKey+ ", ?) >= 1 ";
 			
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, searchValue);
 			
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if(rs.next())
-				result=rs.getInt(1);
+				result = rs.getInt(1);
+			
+			rs.close();
+			pstmt.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+		} 
 		
 		return result;
 	}
 	
-	public List<JavaBoardDTO> listBoard(int start, int end) {
-		List<JavaBoardDTO> list=new ArrayList<>();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		StringBuffer sb=new StringBuffer();
+	// 리스트 보여주기 
+	public List<JavaBoardDTO> listBoard(int start, int end) 
+	{
+		List<JavaBoardDTO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sb = new StringBuffer();
 		
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("        SELECT num, b.userId, userName, subject");
+			sb.append("        SELECT num, j.userId, userName, subject");
 			sb.append("            ,TO_CHAR(created, 'YYYY-MM-DD') created");
 			sb.append("            ,hitCount");
-			sb.append("            FROM bbs b JOIN member1 m ON b.userId=m.userId  ");
+			sb.append("            FROM javaboard j JOIN member1 m ON j.userId=m.userId  ");
 			sb.append("	       ORDER BY num DESC");
 			sb.append("    ) tb WHERE ROWNUM <= ? ");
 			sb.append(") WHERE rnum >= ? ");
@@ -143,10 +121,10 @@ public class JavaBoardDAO {
 			pstmt.setInt(1, end);
 			pstmt.setInt(2, start);
 
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				JavaBoardDTO dto=new JavaBoardDTO();
+				JavaBoardDTO dto = new JavaBoardDTO();
 				
 				dto.setNum(rs.getInt("num"));
 				dto.setUserId(rs.getString("userId"));
@@ -158,40 +136,31 @@ public class JavaBoardDAO {
 				list.add(dto);
 			}
 			
+			rs.close();
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+		} 
+		
 		return list;
 	}
 	
-	// 검색에서의 리스트
-	public List<JavaBoardDTO> listBoard(int start, int end, String searchKey, String searchValue) {
-		List<JavaBoardDTO> list=new ArrayList<>();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		StringBuffer sb=new StringBuffer();
+	// 검색했을 때의  리스트 보여주기 
+	public List<JavaBoardDTO> listBoard(int start, int end, String searchKey, String searchValue) 
+	{
+		List<JavaBoardDTO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sb = new StringBuffer();
 		
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("        SELECT num, b.userId, userName, subject");
+			sb.append("        SELECT num, j.userId, userName, subject");
 			sb.append("            ,TO_CHAR(created, 'YYYY-MM-DD') created");
 			sb.append("            ,hitCount");
-			sb.append("            FROM bbs b JOIN member1 m ON b.userId=m.userId ");
+			sb.append("            FROM javaboard j JOIN member1 m ON j.userId=m.userId ");
 			if(searchKey.equals("userName"))
 				sb.append("        WHERE  INSTR(userName, ?) = 1  ");
 			else if(searchKey.equals("created"))
@@ -207,10 +176,11 @@ public class JavaBoardDAO {
 			pstmt.setInt(2, end);
 			pstmt.setInt(3, start);
 
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				JavaBoardDTO dto=new JavaBoardDTO();
+			while(rs.next()) 
+			{
+				JavaBoardDTO dto = new JavaBoardDTO();
 				
 				dto.setNum(rs.getInt("num"));
 				dto.setUserId(rs.getString("userId"));
@@ -222,72 +192,60 @@ public class JavaBoardDAO {
 				list.add(dto);
 			}
 			
+			rs.close();
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+		} 
+		
 		return list;
 	}
 	
 	
-	// 조회수 증가하기
-	public int updateHitCount(int num)  {
-		int result=0;
-		PreparedStatement pstmt=null;
+	// 조회수 증가시키기 
+	public int updateHitCount(int num)  
+	{
+		int result = 0;
+		PreparedStatement pstmt = null;
 		String sql;
 		
 		try {
-			sql="UPDATE bbs SET hitCount=hitCount+1  WHERE num=?";
-			pstmt=conn.prepareStatement(sql);
+			sql = "UPDATE javaboard SET hitCount=hitCount+1  WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			result=pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (Exception e2) {
-				}
-			}
 		}
 		
 		return result;
 	}
 	
-	// 해당 게시물의 전체 값 가져오기
-	public JavaBoardDTO readBoard(int num) {
-		JavaBoardDTO dto=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		StringBuffer sb=new StringBuffer();
+	// 해당 게시물 내용 읽어오기 
+	public JavaBoardDTO readBoard(int num) 
+	{
+		JavaBoardDTO dto = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sb = new StringBuffer();
 		
 		try {
-			sb.append("SELECT num, b.userId, userName, subject, content");
+			sb.append("SELECT num, j.userId, userName, subject, content");
 			sb.append("   ,created, hitCount ");
-			sb.append("   FROM bbs b JOIN member1 m ON b.userId=m.userId  ");
+			sb.append("   FROM javaboard j JOIN member1 m ON j.userId=m.userId  ");
 			sb.append("   WHERE num = ? ");
 
 			pstmt = conn.prepareStatement(sb.toString());
 			pstmt.setInt(1, num);
 
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto=new JavaBoardDTO();
+				dto = new JavaBoardDTO();
 				dto.setNum(rs.getInt("num"));
 				dto.setUserId(rs.getString("userId"));
 				dto.setUserName(rs.getString("userName"));
@@ -296,39 +254,30 @@ public class JavaBoardDAO {
 				dto.setHitCount(rs.getInt("hitCount"));
 				dto.setCreated(rs.getString("created"));
 			}
+			
+			rs.close();
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
 		}
 		
 		return dto;
 	}
 	
-    // 이전글
-    public JavaBoardDTO preReadBoard(int num, String searchKey, String searchValue) {
-        JavaBoardDTO dto=null;
+    // 이전글 보기 
+    public JavaBoardDTO preReadBoard(int num, String searchKey, String searchValue) 
+    {
+        JavaBoardDTO dto = null;
 
-        PreparedStatement pstmt=null;
-        ResultSet rs=null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         StringBuffer sb = new StringBuffer();
 
         try {
-            if(searchValue!=null && searchValue.length() != 0) {
+            if(searchValue != null && searchValue.length() != 0) {
                 sb.append("SELECT ROWNUM, tb.* FROM ( ");
-                sb.append("  SELECT num, subject FROM bbs b JOIN member1 m ON b.userId=m.userId ");
+                sb.append("  SELECT num, subject FROM javaboard j JOIN member1 m ON j.userId=m.userId ");
                 if(searchKey.equals("userName"))
                 	sb.append("     WHERE (INSTR(userName, ?) = 1)  ");
                 else if(searchKey.equals("created"))
@@ -339,60 +288,51 @@ public class JavaBoardDAO {
                 sb.append("         ORDER BY num ASC ");
                 sb.append("      ) tb WHERE ROWNUM=1 ");
 
-                pstmt=conn.prepareStatement(sb.toString());
+                pstmt = conn.prepareStatement(sb.toString());
                 pstmt.setString(1, searchValue);
                 pstmt.setInt(2, num);
 			} else {
                 sb.append("SELECT ROWNUM, tb.* FROM ( ");
-                sb.append("  SELECT num, subject FROM bbs b JOIN member1 m ON b.userId=m.userId ");
+                sb.append("  SELECT num, subject FROM javaboard j JOIN member1 m ON j.userId=m.userId ");
                 sb.append("     WHERE num > ? ");
                 sb.append("         ORDER BY num ASC ");
                 sb.append("      ) tb WHERE ROWNUM=1 ");
 
-                pstmt=conn.prepareStatement(sb.toString());
+                pstmt = conn.prepareStatement(sb.toString());
                 pstmt.setInt(1, num);
 			}
 
             rs=pstmt.executeQuery();
 
             if(rs.next()) {
-                dto=new JavaBoardDTO();
+                dto = new JavaBoardDTO();
                 dto.setNum(rs.getInt("num"));
                 dto.setSubject(rs.getString("subject"));
             }
+            
+            rs.close();
+            pstmt.close();
+            
         } catch (Exception e) {
             System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-    
+		} 
+        
         return dto;
     }
 
-    // 다음글
-    public JavaBoardDTO nextReadBoard(int num, String searchKey, String searchValue) {
-        JavaBoardDTO dto=null;
+    // 다음글 보기 
+    public JavaBoardDTO nextReadBoard(int num, String searchKey, String searchValue) 
+    {
+        JavaBoardDTO dto = null;
 
-        PreparedStatement pstmt=null;
-        ResultSet rs=null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         StringBuffer sb = new StringBuffer();
 
         try {
-            if(searchValue!=null && searchValue.length() != 0) {
+            if(searchValue != null && searchValue.length() != 0) {
                 sb.append("SELECT ROWNUM, tb.* FROM ( ");
-                sb.append("  SELECT num, subject FROM bbs b JOIN member1 m ON b.userId=m.userId ");
+                sb.append("  SELECT num, subject FROM javaboard j JOIN member1 m ON j.userId=m.userId ");
                 if(searchKey.equals("userName"))
                 	sb.append("     WHERE (INSTR(userName, ?) = 1)  ");
                 else if(searchKey.equals("created"))
@@ -403,54 +343,46 @@ public class JavaBoardDAO {
                 sb.append("         ORDER BY num DESC ");
                 sb.append("      ) tb WHERE ROWNUM=1 ");
 
-                pstmt=conn.prepareStatement(sb.toString());
+                pstmt = conn.prepareStatement(sb.toString());
                 pstmt.setString(1, searchValue);
                 pstmt.setInt(2, num);
 			} else {
                 sb.append("SELECT ROWNUM, tb.* FROM ( ");
-                sb.append("  SELECT num, subject FROM bbs b JOIN member1 m ON b.userId=m.userId ");
+                sb.append("  SELECT num, subject FROM javaboard j JOIN member1 m ON j.userId=m.userId ");
                 sb.append("     WHERE num < ? ");
                 sb.append("         ORDER BY num DESC ");
                 sb.append("      ) tb WHERE ROWNUM=1 ");
 
-                pstmt=conn.prepareStatement(sb.toString());
+                pstmt = conn.prepareStatement(sb.toString());
                 pstmt.setInt(1, num);
             }
 
             rs=pstmt.executeQuery();
 
             if(rs.next()) {
-                dto=new JavaBoardDTO();
+                dto = new JavaBoardDTO();
                 dto.setNum(rs.getInt("num"));
                 dto.setSubject(rs.getString("subject"));
             }
+            
+            rs.close();
+            pstmt.close();
+            
         } catch (Exception e) {
             System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
 		}
-
+        
         return dto;
     }
 	
-	public int updateBoard(JavaBoardDTO dto) {
+    // 수정하기 
+	public int updateBoard(JavaBoardDTO dto) 
+	{
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql;
 		
-		sql="UPDATE bbs SET subject=?, content=? WHERE num=?";
+		sql="UPDATE javaboard SET subject=?, content=? WHERE num=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getSubject());
@@ -458,122 +390,105 @@ public class JavaBoardDAO {
 			pstmt.setInt(3, dto.getNum());
 			result = pstmt.executeUpdate();
 			
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}		
+		}
+		
 		return result;
 	}
 	
-	public int deleteBoard(int num) {
+	// 삭제하기 
+	public int deleteBoard(int num) 
+	{
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql;
 		
-		sql="DELETE FROM bbs WHERE num=?";
+		sql="DELETE FROM javaboard WHERE num=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			result = pstmt.executeUpdate();
 			
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		} finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}		
-		return result;
-	}
-	
-	// 리플 ==========================
-	// 데이터 추가
-	public int insertReply(JavaReplyDTO dto) {
-		int result=0;
-		PreparedStatement pstmt=null;
-		StringBuffer sb=new StringBuffer();
-		
-		try {
-			sb.append("INSERT INTO bbsReply(replyNum, num, userId, content) ");
-			sb.append(" VALUES (bbsReply_seq.NEXTVAL, ?, ?, ?)");
-			
-			pstmt=conn.prepareStatement(sb.toString());
-			pstmt.setInt(1, dto.getNum());
-			pstmt.setString(2, dto.getUserId());
-			pstmt.setString(3, dto.getContent());
-			
-			result=pstmt.executeUpdate();
+			pstmt.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(pstmt!=null)
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
 		}
 		
 		return result;
 	}
 	
-	public int dataCountReply(int num) {
-		int result=0;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql;
+	// 리플 데이터 추가시키기 
+	public int insertReply(JavaReplyDTO dto) 
+	{
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuffer sb = new StringBuffer();
 		
 		try {
-			sql="SELECT NVL(COUNT(*), 0) FROM bbsReply WHERE num=?";
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			sb.append("INSERT INTO javaboardReply(replyNum, num, userId, content) ");
+			sb.append(" VALUES (javaboardReply_seq.NEXTVAL, ?, ?, ?)");
 			
-			rs=pstmt.executeQuery();
-			if(rs.next())
-				result=rs.getInt(1);
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getUserId());
+			pstmt.setString(3, dto.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
+		}
+		
+		return result;
+	}
+	
+	// 리플 갯수 읽어오기 
+	public int dataCountReply(int num) 
+	{
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			sql = "SELECT NVL(COUNT(*), 0) FROM javaboardReply WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				result = rs.getInt(1);
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 		
 		return result;
 	}
 
-	public List<JavaReplyDTO> listReply(int num, int start, int end) {
-		List<JavaReplyDTO> list=new ArrayList<>();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		StringBuffer sb=new StringBuffer();
+	// 리플 목록 읽어오기 
+	public List<JavaReplyDTO> listReply(int num, int start, int end) 
+	{
+		List<JavaReplyDTO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sb = new StringBuffer();
 		
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("        SELECT replyNum, num, b.userId, userName, content");
+			sb.append("        SELECT replyNum, num, j.userId, userName, content");
 			sb.append("            ,TO_CHAR(created, 'YYYY-MM-DD') created");
-			sb.append("            FROM bbsReply b JOIN member1 m ON b.userId=m.userId  ");
+			sb.append("            FROM javaboardReply j JOIN member1 m ON j.userId=m.userId  ");
 			sb.append("            WHERE num=?");
 			sb.append("	       ORDER BY replyNum DESC");
 			sb.append("    ) tb WHERE ROWNUM <= ? ");
@@ -584,9 +499,10 @@ public class JavaBoardDAO {
 			pstmt.setInt(2, end);
 			pstmt.setInt(3, start);
 
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			while(rs.next()) 
+			{
 				JavaReplyDTO dto=new JavaReplyDTO();
 				
 				dto.setReplyNum(rs.getInt("replyNum"));
@@ -599,46 +515,35 @@ public class JavaBoardDAO {
 				list.add(dto);
 			}
 			
+			rs.close();
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-				
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
 		}
+		
 		return list;
 	}
 
-	public int deleteReply(int replyNum) {
+	// 리플 삭제하기 
+	public int deleteReply(int replyNum) 
+	{
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql;
 		
-		sql="DELETE FROM bbsReply WHERE replyNum=?";
+		sql="DELETE FROM javaboardReply WHERE replyNum=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, replyNum);
 			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		} finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			}
-		}		
+		} 
+		
 		return result;
 	}
 	

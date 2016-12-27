@@ -76,8 +76,7 @@ public class BoardServlet extends MyServlet {
 			}
 			
 			String listUrl=cp+"/freeBoard/list.do?rows="+numPerPage;
-			String articleUrl=cp+"/freeBoard/article.do?page="+
-			           current_page+"&rows="+numPerPage;
+			String articleUrl=cp+"/freeBoard/article.do?page="+current_page+"&rows="+numPerPage;
 			/*if(searchValue.length()!=0) {                         //검색일때,
 				listUrl+="&searchKey="+searchKey
 						+"&searchValue="

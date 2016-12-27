@@ -113,8 +113,8 @@ function selectList(){
 	                <c:forEach var="dto" items="${list}">
 	                    <tr>
 	                        <td class="text-center">${dto.listNum}</td>
-	                        <td>${dto.subject}	                        
-	                        <%-- <a href="${articleUrl}&boardNum=${dto.boardNum}">${dto.subject}</a> --%>
+	                        <td>                     
+	                       <a href="${articleUrl}&boardNum=${dto.num}">${dto.subject}</a>
 	                        </td>
 	                        <td class="text-center">${dto.userName}</td>
 	                        <td class="text-center">${dto.created}</td>

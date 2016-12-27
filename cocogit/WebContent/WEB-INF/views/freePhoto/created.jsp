@@ -113,8 +113,8 @@
 	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 추억의 포토 겔러리를 회원과 공유할 수 있는 공간입니다.
+	    <div class="alert alert-info" style="background: red; color: black">
+	        <i class="glyphicon glyphicon-info-sign"></i> 일단 올려 괜찮아 안짤려 ㅋㅋㅋㅋㅋ
 	    </div>
 	    
 	    <div>

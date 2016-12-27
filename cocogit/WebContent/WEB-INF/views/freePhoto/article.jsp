@@ -80,8 +80,8 @@ function deletePhoto(num) {
 	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 추억의 포토 겔러리를 회원과 공유할 수 있는 공간입니다.
+	    <div class="alert alert-info" style="background: red; color: black">
+	        <i class="glyphicon glyphicon-info-sign"></i> 어떰? 괜춘??
 	    </div>
 	    
 	    <div class="table-responsive" style="clear: both;">

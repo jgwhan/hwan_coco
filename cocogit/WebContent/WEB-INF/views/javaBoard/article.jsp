@@ -67,11 +67,12 @@ function deleteBoard() {
     var num = "${dto.num}";
     var page = "${page}";
     var params = "num="+num+"&page="+page;
-    var url = "<%=cp%>/bbs/delete.do?" + params;
+    var url = "<%=cp%>/javaBoard/delete.do?" + params;
 
     if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
     	location.href=url;
-</c:if>    
+</c:if>   
+
 <c:if test="${sessionScope.member.userId!='admin' && sessionScope.member.userId!=dto.userId}">
     alert("게시물을 삭제할 수  없습니다.");
 </c:if>
@@ -82,7 +83,7 @@ function updateBoard() {
     var num = "${dto.num}";
     var page = "${page}";
     var params = "num="+num+"&page="+page;
-    var url = "<%=cp%>/bbs/update.do?" + params;
+    var url = "<%=cp%>/javaBoard/update.do?" + params;
 
     location.href=url;
 </c:if>
@@ -103,7 +104,7 @@ $(function(){
 });
 
 function listPage(page) {
-	var url="<%=cp%>/bbs/listReply.do";
+	var url="<%=cp%>/javaBoard/listReply.do";
 	var num="${dto.num}";
 	$.post(url, {num:num, pageNo:page}, function(data){
 		$("#listReply").html(data);
@@ -131,7 +132,7 @@ function sendReply() {
 	
 	$.ajax({
 		type:"POST"
-		,url:"<%=cp%>/bbs/insertReply.do"
+		,url:"<%=cp%>/javaBoard/insertReply.do"
 		,data:params
 		,dataType:"json"
 		,success:function(data) {
@@ -161,7 +162,7 @@ function deleteReply(replyNum, pageNo, userId) {
 	}
 	
 	if(confirm("게시물을 삭제하시겠습니까 ? ")) {	
-		var url="<%=cp%>/bbs/deleteReply.do";
+		var url="<%=cp%>/javaBoard/deleteReply.do";
 		$.post(url, {replyNum:replyNum, userId:userId}, function(data){
 		        var state=data.state;
 				if(state=="loginFail") {
@@ -184,12 +185,15 @@ function deleteReply(replyNum, pageNo, userId) {
     <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
 
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-book"></span> 게시판 </h3>
-	    </div>
-	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 회원과 자유로이 토론할 수 있는 공간입니다.
-	    </div>
+				<h3>
+					<span class="glyphicon glyphicon-education"></span> 자바 게시판 
+				</h3>
+			</div>
+
+			<div class="alert alert-info" style="background-color: #D8D8D8; 
+			border-color: activeborder; color: black">
+				<i class="glyphicon glyphicon-leaf"></i> 자바에 대해 알아봅시다!
+			</div>
 	    
 	    <div class="table-responsive" style="clear: both;">
 	        <div class="bbs-article">

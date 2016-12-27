@@ -71,26 +71,28 @@ public class MemberDAO {
 	}
 	
 	public int insertMember(MemberDTO dto) {
-		int result=0;
-		PreparedStatement pstmt=null;
-		StringBuffer sb=new StringBuffer();
-		
+
+		int result = 0;		
+		PreparedStatement pstmt = null;
+		String sql;
+
 		try {
-			sb.append("INSERT INTO member1(userId, userPwd, userName) VALUES (?, ?, ?)");
-			pstmt=conn.prepareStatement(sb.toString());
-			
+			sql = "insert into member1(userId, userName, userPwd) values (?,?,?)";
+
+			pstmt = conn.prepareStatement(sql);
+
 			pstmt.setString(1, dto.getUserId());
-			pstmt.setString(2, dto.getUserPwd());
-			pstmt.setString(3, dto.getUserName());
-			pstmt.executeUpdate();
+			pstmt.setString(2, dto.getUserName());
+			pstmt.setString(3, dto.getUserPwd());
+
+			result = pstmt.executeUpdate();
 			pstmt.close();
-			pstmt=null;
+			pstmt = null;
 			
-			sb=new StringBuffer();
-			// sb.delete(0, sb.length());
+			sql = "insert into member2(userId, birth, email, tel, job, zip, addr1, addr2) values (?,?,?,?,?,?,?,?)";
 			
-			sb.append("INSERT INTO member2(userId, birth, email, tel, job, zip, addr1, addr2) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-			pstmt=conn.prepareStatement(sb.toString());
+			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, dto.getUserId());
 			pstmt.setString(2, dto.getBirth());
 			pstmt.setString(3, dto.getEmail());
@@ -102,10 +104,10 @@ public class MemberDAO {
 			
 			pstmt.executeUpdate();
 			pstmt.close();
-			pstmt=null;
+			pstmt = null;
 			
-			result=1;
-			
+			result = 1;
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

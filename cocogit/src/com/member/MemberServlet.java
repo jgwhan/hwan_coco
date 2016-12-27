@@ -67,8 +67,10 @@ public class MemberServlet extends MyServlet {
 			req.setAttribute("mode", "created");
 			forward(req, resp, "/WEB-INF/views/member/member.jsp");
 			
-		} else if(uri.indexOf("member_ok.do")!=-1) {
-			// 회원가입 처리
+		}
+		
+		else if(uri.indexOf("member_ok.do")!=-1)
+		{
 			MemberDTO dto = new MemberDTO();
 
 			dto.setUserId(req.getParameter("userId"));
@@ -76,13 +78,13 @@ public class MemberServlet extends MyServlet {
 			dto.setUserName(req.getParameter("userName"));
 			dto.setBirth(req.getParameter("birth"));
 			dto.setEmail(req.getParameter("email"));
+			
 			String tel1 = req.getParameter("tel1");
 			String tel2 = req.getParameter("tel2");
 			String tel3 = req.getParameter("tel3");
-			if (tel1 != null && tel1.length() != 0 && tel2 != null
-					&& tel2.length() != 0 && tel3 != null && tel3.length() != 0) {
+			
+			if (tel1 != null && tel1.length() != 0 && tel2 != null && tel2.length() != 0 && tel3 != null && tel3.length() != 0)
 				dto.setTel(tel1 + "-" + tel2 + "-" + tel3);
-			}
 			
 			dto.setJob(req.getParameter("job"));
 			dto.setZip(req.getParameter("zip"));
@@ -90,29 +92,34 @@ public class MemberServlet extends MyServlet {
 			dto.setAddr2(req.getParameter("addr2"));
 
 			int result = dao.insertMember(dto);
-			if (result != 1) {
+			
+			System.out.println("이까지 옴");
+			
+			if (result != 1)
+			{
 				String message = "회원 가입이 실패 했습니다.";
 
 				req.setAttribute("title", "회원 가입");
 				req.setAttribute("mode", "created");
 				req.setAttribute("message", message);
+				
 				forward(req, resp, "/WEB-INF/views/member/member.jsp");
+				
 				return;
 			}
 
-			StringBuffer sb=new StringBuffer();
-			sb.append("<b>"+dto.getUserName() 
-			   + "</b>님 회원가입이 되었습니다.<br>");
-			sb.append("메인화면으로 이동하여 로그인 하시기 바랍니다.<br>");
+			StringBuffer sb = new StringBuffer();
+			
+			sb.append("<b>"+dto.getUserName() + "</b>님 회원가입이 되었습니다.<br>");
+			sb.append("당신은 회원가입과 동시에 1,000,000원 출금되셨습니다. 축하드립니다.<br>");
+			sb.append("메인화면으로 이동하여 로그인 하시고 추가 출금 피해를 당해주세요.<br>");
 			
 			req.setAttribute("title", "회원 가입");
 			req.setAttribute("message", sb.toString());
 			
 			forward(req, resp, "/WEB-INF/views/member/complete.jsp");
-			
 		}
-		
-		
+
 	}
 
 }

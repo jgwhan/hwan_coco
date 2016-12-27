@@ -36,7 +36,7 @@
 <script type="text/javascript">
 function searchList() {
 		var f=document.searchForm;
-		f.action="<%=cp%>/board/list.do";
+		f.action="<%=cp%>/qaBoard/list.do";
 		f.submit();
 }
 

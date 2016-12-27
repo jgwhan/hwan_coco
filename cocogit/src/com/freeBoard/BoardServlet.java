@@ -31,7 +31,7 @@ public class BoardServlet extends MyServlet {
 		if (uri.indexOf("list.do") != -1) {
 			list(req, resp);
 		} else if (uri.indexOf("created.do") != -1) {
-			createdForm(req, resp);
+			createdForm(req, resp); 
 		} else if (uri.indexOf("created_ok.do") != -1) {
 			createdSubmit(req, resp);
 		} else if (uri.indexOf("article.do") != -1) {

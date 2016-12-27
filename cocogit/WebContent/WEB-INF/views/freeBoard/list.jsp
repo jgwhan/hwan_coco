@@ -33,7 +33,7 @@
 
 			<div class="alert alert-info" style="background-color: #D8D8D8; 
 			border-color: activeborder; color: black">
-				<i class="glyphicon glyphicon-leaf"></i> 자유게시판
+				<i class="glyphicon glyphicon-leaf"></i> 자유게시판 
 			</div>
 
 			<div>

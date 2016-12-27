@@ -24,7 +24,7 @@
               </div>
               <div  style="clear: both; padding: 5px 0 5px 0px;  min-height: 40px;">
                        ${dto.content}
-              </div>
+              </div> 
          </div>
     </c:forEach>
     </div>

@@ -32,7 +32,7 @@ public class BoardDTO {
 		this.userName = userName;
 	}
 	public String getSubject() {
-		return subject;
+		return subject; 
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;

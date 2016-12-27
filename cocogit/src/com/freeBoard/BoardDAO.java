@@ -621,7 +621,7 @@ public class BoardDAO {
 	public int deleteReply(int replyNum) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql;
+		String sql; 
 		
 		sql="DELETE FROM freeBoardReply WHERE replyNum=?";
 		try {

@@ -28,7 +28,7 @@ public class ReplyDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getContent() {
+	public String getContent() { 
 		return content;
 	}
 	public void setContent(String content) {

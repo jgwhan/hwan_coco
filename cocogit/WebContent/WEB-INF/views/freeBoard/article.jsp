@@ -146,7 +146,7 @@ function sendReply() {
 			} else if(state=="loginFail") {
 				login();
 			}
-		}
+		} 
 		,error:function(e) {
 			alert(e.responseText);
 		}

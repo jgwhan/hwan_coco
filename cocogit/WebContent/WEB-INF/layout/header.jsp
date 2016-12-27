@@ -11,7 +11,7 @@
  a:visited { color: black; text-decoration: none;}
  a:hover { color: black; text-decoration: none;}
 </style>
-
+<div class = "container">
 	<div class="main-a">
 	<h2 style="margin-left: 30px;"><a href="<%=cp%>/"><span class="glyphicon glyphicon-heart"></span> 객체지향 IT 블로그   </a></h2>
 	</div>
@@ -74,3 +74,4 @@
     </div>
   </div>
 </nav>  
+</div>

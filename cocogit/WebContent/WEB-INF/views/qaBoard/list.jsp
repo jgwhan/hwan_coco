@@ -53,7 +53,7 @@ function selectList() {
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 	</div>
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: 15px; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
         
 	    <div class="body-title">
 	          <h3><span class="glyphicon glyphicon-book"></span> 질문과 답변 </h3>

@@ -22,12 +22,13 @@
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 </head>
-
+<body>
+<div class = "container">
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
-<body >
+
 <div class="jumbotron" style="margin-left: 30px; margin-right: 30px">
   <h1 style="margin-left: 15px"> &nbsp; 우리들의 IT 이야기 </h1>
   <p style="margin-left: 15px">재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
@@ -80,5 +81,7 @@
 
 </div>
 
+
+</div>
 </body>
 </html>

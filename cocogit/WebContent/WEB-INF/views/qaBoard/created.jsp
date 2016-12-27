@@ -81,19 +81,20 @@
 
 </head>
 <body>
+<div class = container>
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: 15px; margin-right: auto;">
     
 	    <div class="body-title">
 	          <h3><span class="glyphicon glyphicon-book"></span> 질문과 답변 </h3>
 	    </div>
 	    
 	    <div class="alert">
-	        <i class="glyphicon-question-sign"></i> 질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
+	        <i class="glyphicon-question-sign "></i>  질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
 	    </div>
 	    
 	    <div>
@@ -160,5 +161,6 @@
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript" src="<%=cp%>/res/bootstrap/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

@@ -62,7 +62,7 @@ function selectList() {
 	    <div class="alert alert-default" role="alert">
 	        <i class="glyphicon-question-sign "></i>  질문과 답변 게시판입니다. 이곳에 질문을 올리시면 친절과 정성을 담아 답변해드립니다.
 	    </div>
-	
+	<!-- df -->
 	    <div>
 	        <div style="clear: both; height: 35px; line-height: 35px;">
 	            <div style="float: left;">${dataCount}개(${page}/${total_page}페이지)</div>

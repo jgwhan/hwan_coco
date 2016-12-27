@@ -103,7 +103,7 @@ function article(num) {
 	    </c:forEach>
 	
 	    <c:set var="n" value="${list.size()}"/>
-	    <c:if test="${n>0&&n%3!=0}">
+	    <c:if test="${n>0 && n%3 != 0}">
 			        <c:forEach var="i" begin="${n%3+1}" end="3" step="1">
 				             <div class="imgLayout">&nbsp;</div>
 			        </c:forEach>

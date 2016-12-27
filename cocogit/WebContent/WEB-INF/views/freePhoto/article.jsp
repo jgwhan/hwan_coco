@@ -76,8 +76,8 @@ function deletePhoto(num) {
 <div class="container" role="main">
     <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
 
-	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>
+	    <div class="body-title" style="color: red">
+	          <h3><span class="glyphicon glyphicon-picture"></span> 성인 갤러리 </h3>
 	    </div>
 	    
 	    <div class="alert alert-info" style="background: red; color: black">
@@ -88,16 +88,21 @@ function deletePhoto(num) {
 	        <div class="bbs-article">
 	            <table class="table">
 	                 <thead>
-	                     <tr>
-	                         <th colspan="2" style="text-align: center;">
-	                                 ${dto.subject}
+	                  <tr>
+	                         <th  style="text-align: left;">
+	                             	제목 :  ${dto.subject}
 	                         </th>
+	                         <td style="text-align: right;">
+	                          조회수 : ${dto.hitCount}
+	                         </td>
 	                     </tr>
+	                    
+	                    
 	                <thead>
 	                 <tbody>
 	                     <tr>
 	                         <td style="text-align: left;">
-	                             이름 : ${dto.userName}
+	                             	이름 : ${dto.userName}
 	                         </td>
 	                         <td style="text-align: right;">
 	                          ${dto.created}
@@ -110,7 +115,7 @@ function deletePhoto(num) {
                          </tr>
 	                     <tr>
 	                         <td colspan="2" style="min-height: 30px;">
-	                              ${dto.content}&nbsp;&nbsp;&nbsp;&nbsp;${dto.hitCount}
+	                              ${dto.content}
 	                         </td>
 	                     </tr>
 	                </tbody>

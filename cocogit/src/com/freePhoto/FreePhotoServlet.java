@@ -2,7 +2,7 @@ package com.freePhoto;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -195,6 +195,7 @@ public class FreePhotoServlet extends MyServlet {
 		}
 		
 		int num=Integer.parseInt(req.getParameter("num"));
+		
 		String page=req.getParameter("page");
 		String rows=req.getParameter("rows");
 		
@@ -207,6 +208,7 @@ public class FreePhotoServlet extends MyServlet {
 		
 		req.setAttribute("dto", dto);
 		req.setAttribute("mode", "update");
+		req.setAttribute("num", num);
 		req.setAttribute("page", page);
 		req.setAttribute("rows", rows);
 		
@@ -215,28 +217,48 @@ public class FreePhotoServlet extends MyServlet {
 	}	
 
 	private void update_ok(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		
-		String cp=req.getContextPath();
-		FreePhotoDAO dao=new FreePhotoDAO();
-		
+		PrintWriter out = resp.getWriter();
+		String encType="UTF-8";
+		int maxSize=15*1024*1024;
+		MultipartRequest mreq=
+				new MultipartRequest(req, pathname, maxSize,
+						encType, new DefaultFileRenamePolicy());
+		String saveFilename=mreq.getFilesystemName("upload");
+		saveFilename=FileManager.doFilerename(pathname, saveFilename);
 		if(info==null) {
 			forward(req, resp, "/WEB-INF/views/member/login.jsp");
 			return;
 		}
+		System.out.println(saveFilename);
+		if(saveFilename!=null){
+		
+		
+		
+		String cp=req.getContextPath();
+		FreePhotoDAO dao=new FreePhotoDAO();
+		
+
 		
 		FreePhotoDTO dto=new FreePhotoDTO();
-		dto.setNum(Integer.parseInt(req.getParameter("num")));
-		dto.setSubject(req.getParameter("subject"));
-		dto.setContent(req.getParameter("content"));
-		dto.setImageFilename(req.getParameter("IMAGEFILENAME"));
-		String page=req.getParameter("page");
-		String rows=req.getParameter("rows");
+		dto.setNum(Integer.parseInt(mreq.getParameter("num")));
+		dto.setSubject(mreq.getParameter("subject"));
+		dto.setContent(mreq.getParameter("content"));
+		dto.setImageFilename(saveFilename);
+		String page=mreq.getParameter("page");
+		String rows=mreq.getParameter("rows");
+		
+		
+		
 		
 		dao.updatePhoto(dto);
 		
 		
 		resp.sendRedirect(cp+"/freePhoto/list.do?page="+page+"&rows="+rows);
+		}else
+			out.println("<script>alert('이미지 확인 하세요')</script>");
 	}
+	
+	
 	
 	private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String cp=req.getContextPath();

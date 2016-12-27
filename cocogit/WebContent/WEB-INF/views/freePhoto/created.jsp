@@ -78,8 +78,13 @@
       
   	  if(mode=="created")
   		f.action="<%=cp%>/freePhoto/created_ok.do";
-  	  else if(mode=="update")
-  		f.action="<%=cp%>/freePhoto/update_ok.do";
+  	  else if(mode=="update"){
+  			if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
+  	  			alert('이미지 파일만 가능합니다. !!!');
+  			}else
+  				f.action="<%=cp%>/freePhoto/update_ok.do";
+  	  }
+  		
 
   	// <input type='submit' ..>,  <input type='image' ..>, <button>은 submit() 메소드 호출하면 두번전송
       return true;
@@ -164,16 +169,17 @@
 	                    </tbody>
 	                    <tfoot>
 	                        <tr>
-	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
-	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
-	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/freePhoto/list.do';"> 취소 </button>
-	                                  
-	                                  <c:if test="${mode=='update'}">
+	                         <c:if test="${mode=='update'}">
                                           <input type="hidden" name="num" value="${dto.num}">
                                           <input type="hidden" name="userId" value="${dto.userId}">
                                           <input type="hidden" name="imageFilename" value="${dto.imageFilename}">
                                           <input type="hidden" name="page" value="${page}">
 	                                  </c:if>
+	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
+	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
+	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/freePhoto/list.do';"> 취소 </button>
+	                                  
+	                                 
 	                            </td>
 	                        </tr>
 	                    </tfoot>

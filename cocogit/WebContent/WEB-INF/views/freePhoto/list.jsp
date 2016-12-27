@@ -41,6 +41,12 @@
      cursor: pointer;
      text-align: center;
 }
+
+.subject2 {
+    
+     cursor: pointer;
+     
+}
 </style>
 
 <script type="text/javascript" src="<%=cp%>/res/jquery/js/jquery-1.12.4.min.js"></script>
@@ -85,7 +91,10 @@ function article(num) {
 	                        <c:out value="</div><div style='clear: both; max-width:660px; margin: 0px auto;'>" escapeXml="false"/>
 	                 </c:if>
 				      <div class="imgLayout">
-		                      <img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}" style="width: 190px; height: 190px;" border="0">
+		                     <span class="subject2" onclick="javascript:article('${dto.num}');">
+		                      	<img src="<%=cp%>/uploads/freePhoto/${dto.imageFilename}" style="width: 190px; height: 190px;" border="0" class="img-circle">
+		                     </span>
+		                      
 				             <span class="subject" onclick="javascript:article('${dto.num}');" >
 				                   ${dto.subject}
 				             </span>

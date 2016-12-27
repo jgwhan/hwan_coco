@@ -30,8 +30,8 @@
 
 
 <div class="jumbotron" style="margin-left: 30px; margin-right: 30px">
-  <h1 style="margin-left: 15px"> &nbsp; 우리들의 IT 이야기 </h1>
-  <p style="margin-left: 15px">재식이 기현이 재환이 대호 준휘와 함께해요 뀨</p>
+  <h1 style="margin-left: 15px">우리들의 IT 이야기 </h1>
+  <p style="margin-left: 15px">재식이 기현이 재환이 대호 준휘와 함께해요</p>
 <!--   <img alt="" src="images/gengi.gif" style="margin-left: 15px"> -->
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

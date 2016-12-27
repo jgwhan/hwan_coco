@@ -2,6 +2,7 @@ package com.freePhoto;
 
 public class FreePhotoDTO {
 private int num, listNum;
+private int hitCount;
 private String userId, userName;
 private String subject, content, imageFilename;
 private String created;
@@ -18,6 +19,12 @@ public int getListNum() {
 }
 public void setListNum(int listNum) {
 	this.listNum = listNum;
+}
+public int getHitCount() {
+	return hitCount;
+}
+public void setHitCount(int hitCount) {
+	this.hitCount = hitCount;
 }
 public String getUserId() {
 	return userId;

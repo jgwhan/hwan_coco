@@ -159,7 +159,7 @@ public class FreePhotoServlet extends MyServlet {
 		String rows=req.getParameter("rows");
 	
 
-		
+		dao.updateHitCount(num);
 		// 게시물 가져오기
 		FreePhotoDTO dto=dao.readPhoto(num);
 		if(dto==null) { // 게시물이 없으면 다시 리스트로
@@ -169,7 +169,7 @@ public class FreePhotoServlet extends MyServlet {
 		
 		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 		
-		// 이전글 다음글
+		
 		
 		
 		// 리스트나 이전글/다음글에서 사용할 파라미터
@@ -181,6 +181,8 @@ public class FreePhotoServlet extends MyServlet {
 		req.setAttribute("page", page);
 		req.setAttribute("rows", rows);
 		req.setAttribute("params", params);
+		
+		
 		
 		forward(req, resp, "/WEB-INF/views/freePhoto/article.jsp");
 	}	

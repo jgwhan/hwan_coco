@@ -110,7 +110,7 @@ function deletePhoto(num) {
                          </tr>
 	                     <tr>
 	                         <td colspan="2" style="min-height: 30px;">
-	                              ${dto.content}
+	                              ${dto.content}&nbsp;&nbsp;&nbsp;&nbsp;${dto.hitCount}
 	                         </td>
 	                     </tr>
 	                </tbody>

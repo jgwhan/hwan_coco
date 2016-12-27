@@ -18,7 +18,8 @@ import com.util.MyServlet;
 import com.util.MyUtil;
 
 @WebServlet("/javaBoard/*")
-public class JavaBoardServlet extends MyServlet {
+public class JavaBoardServlet extends MyServlet 
+{
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -27,7 +28,6 @@ public class JavaBoardServlet extends MyServlet {
 
 		String uri = req.getRequestURI();
 
-		// uri에 따른 작업 구분
 		if (uri.indexOf("list.do") != -1) {
 			list(req, resp);
 		} else if (uri.indexOf("created.do") != -1) {
@@ -52,7 +52,7 @@ public class JavaBoardServlet extends MyServlet {
 	}
 
 	private void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 게시물 리스트
+		
 		String cp = req.getContextPath();
 
 		JavaBoardDAO dao = new JavaBoardDAO();
@@ -60,6 +60,7 @@ public class JavaBoardServlet extends MyServlet {
 		
 		String page = req.getParameter("page");
 		int current_page = 1;
+		
 		if (page != null)
 			current_page = Integer.parseInt(page);
 
@@ -70,26 +71,23 @@ public class JavaBoardServlet extends MyServlet {
 			searchKey = "subject";
 			searchValue = "";
 		}
-		// GET 방식인 경우 디코딩
+
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			searchValue = URLDecoder.decode(searchValue, "utf-8");
 		}
 
-		// 전체 데이터 개수
-		int dataCount;
+		int dataCount; // 전체 데이터 개수
 		if (searchValue.length() == 0)
 			dataCount = dao.dataCount();
 		else
 			dataCount = dao.dataCount(searchKey, searchValue);
 
-		// 전체 페이지 수
 		int numPerPage = 10;
 		int total_page = util.pageCount(numPerPage, dataCount);
 
 		if (current_page > total_page)
 			current_page = total_page;
 
-		// 게시물 가져올 시작과 끝
 		int start = (current_page - 1) * numPerPage + 1;
 		int end = current_page * numPerPage;
 
@@ -100,10 +98,11 @@ public class JavaBoardServlet extends MyServlet {
 		else
 			list = dao.listBoard(start, end, searchKey, searchValue);
 
-		// 리스트 글번호 만들기
 		int listNum, n = 0;
 		Iterator<JavaBoardDTO> it = list.iterator();
-		while (it.hasNext()) {
+		
+		while (it.hasNext()) 
+		{
 			JavaBoardDTO dto = it.next();
 			listNum = dataCount - (start + n - 1);
 			dto.setListNum(listNum);
@@ -118,8 +117,8 @@ public class JavaBoardServlet extends MyServlet {
 		}
 
 		// 페이징 처리
-		String listUrl = cp + "/bbs/list.do";
-		String articleUrl = cp + "/bbs/article.do?page=" + current_page;
+		String listUrl = cp + "/javaBoard/list.do";
+		String articleUrl = cp + "/javaBoard/article.do?page=" + current_page;
 		if (params.length() != 0) {
 			listUrl += "?" + params;
 			articleUrl += "&" + params;
@@ -139,9 +138,10 @@ public class JavaBoardServlet extends MyServlet {
 		forward(req, resp, "/WEB-INF/views/javaBoard/list.jsp");
 	}
 	
+	// 글쓰기 폼
 	private void createdForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 글쓰기 폼
-		String cp=req.getContextPath();
+		
+		String cp = req.getContextPath();
 		
 		HttpSession session = req.getSession();
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
@@ -152,7 +152,7 @@ public class JavaBoardServlet extends MyServlet {
 		}
 
 		req.setAttribute("mode", "created");
-		String path = "/WEB-INF/views/bbs/created.jsp";
+		String path = "/WEB-INF/views/javaBoard/created.jsp";
 		forward(req, resp, path);
 	}
 	
@@ -181,11 +181,12 @@ public class JavaBoardServlet extends MyServlet {
 
 		dao.insertBoard(dto);
 
-		resp.sendRedirect(cp + "/bbs/list.do");
+		resp.sendRedirect(cp + "/javaBoard/list.do");
 	}
 
+	// 글보기
 	private void article(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 글보기
+		
 		String cp = req.getContextPath();
 
 		HttpSession session = req.getSession();
@@ -216,7 +217,7 @@ public class JavaBoardServlet extends MyServlet {
 		// 게시물 가져오기
 		JavaBoardDTO dto = dao.readBoard(num);
 		if (dto == null) { // 게시물이 없으면 다시 리스트로
-			resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+			resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 			return;
 		}
 
@@ -243,12 +244,13 @@ public class JavaBoardServlet extends MyServlet {
 		req.setAttribute("searchValue", searchValue);
 
 		// 포워딩
-		String path = "/WEB-INF/views/bbs/article.jsp";
+		String path = "/WEB-INF/views/javaBoard/article.jsp";
 		forward(req, resp, path);
 	}
 	
+	// 수정 폼
 	private void updateForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 수정 폼
+		
 		String cp = req.getContextPath();
 
 		HttpSession session = req.getSession();
@@ -266,13 +268,13 @@ public class JavaBoardServlet extends MyServlet {
 		JavaBoardDTO dto = dao.readBoard(num);
 
 		if (dto == null) {
-			resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+			resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 			return;
 		}
 
 		// 게시물을 올린 사용자가 아니면
 		if (!dto.getUserId().equals(info.getUserId())) {
-			resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+			resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 			return;
 		}
 
@@ -280,12 +282,13 @@ public class JavaBoardServlet extends MyServlet {
 		req.setAttribute("page", page);
 		req.setAttribute("mode", "update");
 
-		String path = "/WEB-INF/views/bbs/created.jsp";
+		String path = "/WEB-INF/views/javaBoard/created.jsp";
 		forward(req, resp, path);
 	}
 
+	// 수정 완료
 	private void updateSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 수정 완료
+		
 		String cp = req.getContextPath();
 
 		HttpSession session = req.getSession();
@@ -301,7 +304,7 @@ public class JavaBoardServlet extends MyServlet {
 		String page = req.getParameter("page");
 
 		if (req.getMethod().equalsIgnoreCase("GET")) {
-			resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+			resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 			return;
 		}
 
@@ -312,11 +315,12 @@ public class JavaBoardServlet extends MyServlet {
 
 		dao.updateBoard(dto);
 
-		resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+		resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 	}
 
+	// 삭제
 	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 삭제
+		
 		String cp = req.getContextPath();
 
 		HttpSession session = req.getSession();
@@ -334,29 +338,31 @@ public class JavaBoardServlet extends MyServlet {
 		JavaBoardDTO dto = dao.readBoard(num);
 
 		if (dto == null) {
-			resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+			resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 			return;
 		}
 
 		// 게시물을 올린 사용자나 admin이 아니면
 		if (!dto.getUserId().equals(info.getUserId()) && !info.getUserId().equals("admin")) {
-			resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+			resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 			return;
 		}
 
 		// bbsReply 테이블은 ON DELETE CASCADE 옵션으로 bbs 테이블의 데이터가 지워지면 자동 지워짐
 		dao.deleteBoard(num);
-		resp.sendRedirect(cp + "/bbs/list.do?page=" + page);
+		resp.sendRedirect(cp + "/javaBoard/list.do?page=" + page);
 	}
 
+	// 리플 리스트 
 	private void listReply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 리플 리스트 ---------------------------------------
+		
 		JavaBoardDAO dao = new JavaBoardDAO();
 		MyUtil util = new MyUtil();
 		
 		int num = Integer.parseInt(req.getParameter("num"));
 		String pageNo = req.getParameter("pageNo");
 		int current_page = 1;
+		
 		if (pageNo != null)
 			current_page = Integer.parseInt(pageNo);
 
@@ -392,12 +398,13 @@ public class JavaBoardServlet extends MyServlet {
 		req.setAttribute("paging", paging);
 
 		// 포워딩
-		String path = "/WEB-INF/views/bbs/listReply.jsp";
+		String path = "/WEB-INF/views/javaBoard/listReply.jsp";
 		forward(req, resp, path);
 	}
 
+	// 리플 저장
 	private void insertReply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 리플 저장하기 ---------------------------------------
+		
 		HttpSession session = req.getSession();
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
 
@@ -429,8 +436,9 @@ public class JavaBoardServlet extends MyServlet {
 		
 	}
 
+	// 리플 삭제 
 	private void deleteReply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 리플 삭제 ---------------------------------------
+		
 		HttpSession session = req.getSession();
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
 

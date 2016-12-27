@@ -78,7 +78,7 @@ public class FreePhotoServlet extends MyServlet {
 			current_page=Integer.parseInt(page);
 		
 		int dataCount;
-		int numPerPage = 6;
+		int numPerPage = 12;
 		int total_page;
 		
 		dataCount=dao.dataCount();

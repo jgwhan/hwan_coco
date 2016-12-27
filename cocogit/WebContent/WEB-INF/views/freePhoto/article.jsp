@@ -74,7 +74,7 @@ function deletePhoto(num) {
 </div>
 
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
+    <div class="bodyFrame col-sm-11"  style="float:none; margin-left: auto; margin-right: auto;">
 
 	    <div class="body-title">
 	          <h3><span class="glyphicon glyphicon-picture"></span> 포토겔러리 </h3>

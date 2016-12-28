@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>우리들의 IT 이야기</title>
 <link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>

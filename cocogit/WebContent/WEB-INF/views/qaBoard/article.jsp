@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>spring</title>
+<title>우리들의 IT 이야기</title>
 <link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>

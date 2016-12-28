@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>study</title>
+<title>우리들의 IT 이야기</title>
 
 <style type="text/css">
 .guest-write {

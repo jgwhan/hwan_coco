@@ -44,7 +44,7 @@ a:hover {
 						회원가입</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.member}">
-					<span style="color: blue;">${sessionScope.member.userName}</span>님 <i></i>
+					<span style="color: blue;">${sessionScope.member.userName}</span>님 환영합니다 <i></i>
 					<c:if test="${sessionScope.member.userId=='admin'}">
 						<a href="<%=cp%>/admin/main.do">관리자</a>
 						<i></i>
@@ -97,8 +97,8 @@ a:hover {
 	</nav>
 
 	<div class="count header" align="right" style="margin-right: 30px;">
-		<span> 오늘 방문자수 : <%=CountManager.getToDayCount()%>&nbsp; 전체
-			방문자수 : <%=CountManager.getTotalCount()%><br>
+		<span> <img alt="" src="<%=cp%>/images/house.png">오늘 방문자수 : <%=CountManager.getToDayCount()%>&nbsp; 
+		<img alt="" src="<%=cp%>/images/house.png">전체방문자수 : <%=CountManager.getTotalCount()%><br>
 		</span>
 	</div>
 

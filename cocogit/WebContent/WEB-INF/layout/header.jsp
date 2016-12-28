@@ -25,7 +25,7 @@ a:hover {
 }
 </style>
 <div class="container">
-		<div style="background-image: url('<%=cp%>/images/pattern3.jpg');" >
+		<div style="background-image: url('<%=cp%>/images/pattern2.png');" >
 			<div class="main-a" align="left">
 				<h1 style="margin-left: 30px; font-family: 'Hanna', serif;">
 					<a href="<%=cp%>/"><span class="glyphicon glyphicon-star"></span>
@@ -65,7 +65,6 @@ a:hover {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<!-- <a class="navbar-brand" href="#">소개</a> -->
 			</div>
 
 			<div class="collapse navbar-collapse"

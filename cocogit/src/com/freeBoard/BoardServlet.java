@@ -84,6 +84,16 @@ public class BoardServlet extends MyServlet {
 
 		// 전체 페이지 수
 		int numPerPage = 10;
+		
+		// 한 페이지당 갯수 설정.
+		String rows = req.getParameter("rows");
+		if(rows!=null){
+			System.out.println("rows들어오나");
+			System.out.println(rows);
+			numPerPage=Integer.parseInt(rows);
+		}
+		//
+		
 		int total_page = util.pageCount(numPerPage, dataCount);
 
 		if (current_page > total_page)
@@ -118,13 +128,23 @@ public class BoardServlet extends MyServlet {
 		}
 
 		// 페이징 처리
-		String listUrl = cp + "/freeBoard/list.do";
+		String listUrl = cp + "/freeBoard/list.do?rows="+numPerPage;
 		String articleUrl = cp + "/freeBoard/article.do?page=" + current_page;
-		if (params.length() != 0) {
+	/*	if (params.length() != 0) {
 			listUrl += "?" + params;
 			articleUrl += "&" + params;
 		}
-
+		*/
+		//페이지이동 + 검색일경우 상황, 
+		if(searchValue.length()!=0) {
+			listUrl+="&searchKey="+searchKey
+					+"&searchValue="
+					+URLEncoder.encode(searchValue, "UTF-8");
+			articleUrl+="&searchKey="+searchKey
+					+"&searchValue="
+					+URLEncoder.encode(searchValue, "UTF-8");
+		}
+		
 		String paging = util.paging(current_page, total_page, listUrl);
 
 		// 포워딩할 JSP로 넘길 속성
@@ -134,7 +154,10 @@ public class BoardServlet extends MyServlet {
 		req.setAttribute("dataCount", dataCount);
 		req.setAttribute("paging", paging);
 		req.setAttribute("articleUrl", articleUrl);
-
+		req.setAttribute("rows", numPerPage);
+		req.setAttribute("searchKey", searchKey);
+		req.setAttribute("searchValue", searchValue);
+		
 		// JSP로 포워딩
 		String path = "/WEB-INF/views/freeBoard/list.jsp";
 		forward(req, resp, path);

@@ -59,7 +59,7 @@ function article(num) {
 </script>
 
 </head>
-<body style="background: #f37070">
+<body><!-- style="background: #f37070" -->
 
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>

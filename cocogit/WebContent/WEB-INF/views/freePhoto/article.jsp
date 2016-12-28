@@ -141,7 +141,7 @@ function deleteReply(replyNum, pageNo, userId) {
 		var url="<%=cp%>/freePhoto/deleteReply.do";
 		$.post(url, {replyNum:replyNum, userId:userId}, function(data){
 		        var state=data.state;
-				if(state=="loginFail") {
+				if(state=="loginFail") {//
 					login();
 				} else {
 					listPage(pageNo);

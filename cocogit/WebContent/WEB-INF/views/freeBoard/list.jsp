@@ -48,7 +48,7 @@ function selectList() {
 
 			<div class="alert alert-info" style="background-color: #D8D8D8; 
 			border-color: activeborder; color: black">
-				<i class="glyphicon glyphicon-star"></i> 자유게시판 입니다 아무말이나 써
+				<i class="glyphicon glyphicon-star"></i> 자유게시판 입니다 아무말이나 쓰셈
 			</div>
 
 			<div>

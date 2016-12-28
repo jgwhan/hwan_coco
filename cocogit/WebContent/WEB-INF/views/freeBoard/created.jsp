@@ -76,19 +76,19 @@
 <div>
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
 </div>
-
 <div class="container" role="main">
-    <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
-    
-	    <div class="body-title">
+		<div class="bodyFrame col-sm-10"
+			style="float: none; margin-left: auto; margin-right: auto;">
+
+			<div class="body-title">
 				<h3>
-					<span class="glyphicon glyphicon-education"></span> 자유 게시판 
+					<span class="glyphicon glyphicon-music"></span> 자유 게시판 
 				</h3>
 			</div>
 
 			<div class="alert alert-info" style="background-color: #D8D8D8; 
 			border-color: activeborder; color: black">
-				<i class="glyphicon glyphicon-leaf"></i> ㅁㄴ이ㅏ러ㅏㅣㄴ어린;망러ㅁㄴㅇㄹㄴㅇㄻ
+				<i class="glyphicon glyphicon-star"></i> 자유게시판 입니다 아무말이나 쓰셈
 			</div>
 	    
 	    <div>

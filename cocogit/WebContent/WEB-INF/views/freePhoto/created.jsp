@@ -176,7 +176,7 @@
                                           <input type="hidden" name="page" value="${page}">
 	                                  </c:if>
 	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
-	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
+	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-heart-empty"></span></button>
 	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/freePhoto/list.do';"> 취소 </button>
 	                                  
 	                                 

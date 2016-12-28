@@ -3,6 +3,7 @@ package com.freePhoto;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import com.member.SessionInfo;
 import com.oreilly.servlet.MultipartRequest;
@@ -63,6 +65,12 @@ public class FreePhotoServlet extends MyServlet {
 			update_ok(req, resp);
 		} else if(uri.indexOf("delete.do")!=-1) {
 			delete(req, resp);
+		}else if (uri.indexOf("listReply.do") != -1) {
+			listReply(req, resp);
+		} else if (uri.indexOf("insertReply.do") != -1) {
+			insertReply(req, resp);
+		} else if (uri.indexOf("deleteReply.do") != -1) {
+			deleteReply(req, resp);
 		}
 		
 	}
@@ -284,6 +292,116 @@ public class FreePhotoServlet extends MyServlet {
 		
 		
 		resp.sendRedirect(cp+"/freePhoto/list.do?page="+page+"&rows="+rows);
+	}
+	
+	
+	
+	private void listReply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 리플 리스트 ---------------------------------------
+		FreePhotoDAO dao = new FreePhotoDAO();
+		MyUtil util = new MyUtil();
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		String pageNo = req.getParameter("pageNo");
+		int current_page = 1;
+		if (pageNo != null)
+			current_page = Integer.parseInt(pageNo);
+
+		int numPerPage = 5;
+		int total_page = 0;
+		int dataCount = 0;
+
+		dataCount = dao.dataCountReply(num);
+		total_page = util.pageCount(numPerPage, dataCount);
+		if (current_page > total_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage + 1;
+		int end = current_page * numPerPage;
+
+		// 리스트에 출력할 데이터
+		//List<PhotoReplyDTO> list = dao.listReply(num, start, end);
+		List<PhotoReplyDTO> list = dao.listReply(num, start, end);
+		// 엔터를 <br>
+		Iterator<PhotoReplyDTO> it = list.iterator();
+		while (it.hasNext()) {
+			PhotoReplyDTO dto = it.next();
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+
+		// 페이징처리(인수2개 짜리 js로 처리)
+		String paging = util.paging(current_page, total_page);
+
+		req.setAttribute("list", list);
+		req.setAttribute("pageNo", current_page);
+		req.setAttribute("dataCount", dataCount);
+		req.setAttribute("total_page", total_page);
+		req.setAttribute("paging", paging);
+
+		// 포워딩
+		String path = "/WEB-INF/views/freePhoto/listReply.jsp";
+		forward(req, resp, path);
+	}
+
+	private void insertReply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 리플 저장하기 ---------------------------------------
+		HttpSession session = req.getSession();
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+
+		FreePhotoDAO dao = new FreePhotoDAO();
+		
+		String state="true";
+		if (info == null) { // 로그인되지 않은 경우
+			state="loginFail";
+		} else {
+			int num = Integer.parseInt(req.getParameter("num"));
+			PhotoReplyDTO dto = new PhotoReplyDTO();
+			dto.setNum(num);
+			dto.setUserId(info.getUserId());
+			dto.setContent(req.getParameter("content"));
+
+			int result=dao.insertReply(dto);
+			if(result==0)
+				state="false";
+		}
+
+		StringBuffer sb=new StringBuffer();
+		sb.append("{");
+		sb.append("\"state\":"+"\""+state+"\"");
+		sb.append("}");
+		
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out=resp.getWriter();
+		out.println(sb.toString());
+		
+	}
+
+	private void deleteReply(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 리플 삭제 ---------------------------------------
+		HttpSession session = req.getSession();
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+
+		FreePhotoDAO dao = new FreePhotoDAO();
+		
+		int replyNum = Integer.parseInt(req.getParameter("replyNum"));
+		String userId=req.getParameter("userId");
+		
+		String state="false";
+		if (info == null) { // 로그인되지 않은 경우
+			state="loginFail";
+		} else if(info.getUserId().equals("admin") || info.getUserId().equals(userId)) {
+			dao.deleteReply(replyNum);
+			state="true";
+		}
+		
+		StringBuffer sb=new StringBuffer();
+		sb.append("{");
+		sb.append("\"state\":"+"\""+state+"\"");
+		sb.append("}");
+		
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out=resp.getWriter();
+		out.println(sb.toString());
 	}
 	
 }

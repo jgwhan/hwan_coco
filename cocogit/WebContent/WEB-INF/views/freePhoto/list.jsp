@@ -131,8 +131,8 @@ function article(num) {
 	        		<div style="float: left; width: 60%; text-align: center;">
 	        		    &nbsp;
 	        		</div>
-	        		<div style="float: left; width: 20%; min-width: 85px; text-align: right;">
-	        		    <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/freePhoto/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 등록하기</button>
+	        		<div  style="float: left; width: 20%; min-width: 85px; text-align: right; border: 10px; border-color: white;">
+	        		    <button type="button" class="btn btn-warning btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/freePhoto/created.do';"><span class="glyphicon glyphicon-hand-down"></span> 등록하기</button>
 	        		</div>
 	        </div>
 	        

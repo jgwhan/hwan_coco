@@ -1,15 +1,20 @@
 package com.freePhoto;
 
+
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
 import java.util.List;
 
 
+
+
 import com.util.DBConn;
+
 
 public class FreePhotoDAO {
 	private Connection conn = DBConn.getConnection();
@@ -214,33 +219,151 @@ public class FreePhotoDAO {
 		return result;
 	}
 
-	public int readPhoto2(String str) {
-		FreePhotoDTO dto=null;
-    	int result=0;
-    	PreparedStatement pstmt=null;
-    	ResultSet rs=null;
-    	String sql;
-    	
-    	
-    	
-    	try {
-			sql="select birth from member1 ";
-			sql+="  WHERE userId="+str;
-			pstmt=conn.prepareStatement(sql);
+	
+	public int insertReply(PhotoReplyDTO dto) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("INSERT INTO PHOTOBOARDREPLY(replyNum, num, userId, content) ");
+			sb.append(" VALUES (photoBoardReply_seq.NEXTVAL, ?, ?, ?)");
 			
-			
-			if(rs.next()) {
-                dto=new FreePhotoDTO();
-                
-             
-            }
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getUserId());
+			pstmt.setString(3, dto.getContent());
 			
 			result=pstmt.executeUpdate();
-			pstmt.close();
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
 		}
-    	return result;
-    }
+		
+		return result;
+	}
+	
+	public int dataCountReply(int num) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql;
+		
+		try {
+			sql="SELECT NVL(COUNT(*), 0) FROM PHOTOBOARDREPLY WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				result=rs.getInt(1);
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+				
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		
+		return result;
+	}
+
+	public List<PhotoReplyDTO> listReply(int num, int start, int end) {
+		List<PhotoReplyDTO> list=new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("SELECT * FROM (");
+			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
+			sb.append("        SELECT replyNum, num, b.userId, userName, content");
+			sb.append("            ,TO_CHAR(created, 'YYYY-MM-DD') created");
+			sb.append("            FROM PHOTOBOARDREPLY b JOIN member1 m ON b.userId=m.userId  ");
+			sb.append("            WHERE num=?");
+			sb.append("	       ORDER BY replyNum DESC");
+			sb.append("    ) tb WHERE ROWNUM <= ? ");
+			sb.append(") WHERE rnum >= ? ");
+
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, end);
+			pstmt.setInt(3, start);
+
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				PhotoReplyDTO dto=new PhotoReplyDTO();
+				
+				dto.setReplyNum(rs.getInt("replyNum"));
+				dto.setNum(rs.getInt("num"));
+				dto.setUserId(rs.getString("userId"));
+				dto.setUserName(rs.getString("userName"));
+				dto.setContent(rs.getString("content"));
+				dto.setCreated(rs.getString("created"));
+				
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+				
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return list;
+	}
+
+	public int deleteReply(int replyNum) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql; 
+		
+		sql="DELETE FROM PHOTOBOARDREPLY WHERE replyNum=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, replyNum);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}		
+		return result;
+	}
+	
 	
 }

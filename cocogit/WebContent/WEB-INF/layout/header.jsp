@@ -44,7 +44,7 @@ a:hover {
 						회원가입</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.member}">
-					<span style="color: blue;">${sessionScope.member.userName}</span>님 <i></i>
+					<span style="color: blue;">${sessionScope.member.userName}</span>님 환영합니다 <i></i>
 					<c:if test="${sessionScope.member.userId=='admin'}">
 						<a href="<%=cp%>/admin/main.do">관리자</a>
 						<i></i>

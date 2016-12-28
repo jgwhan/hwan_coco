@@ -338,7 +338,7 @@ public class FreePhotoDAO {
 				} catch (SQLException e) {
 				}
 			}
-		}
+		}//
 		return list;
 	}
 

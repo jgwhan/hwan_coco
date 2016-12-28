@@ -2,10 +2,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css"
+	rel="stylesheet">
 
 <%
-   request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
 
@@ -14,49 +15,45 @@ a:link {
 	color: black;
 	text-decoration: none;
 }
-
 a:visited {
 	color: black;
 	text-decoration: none;
 }
-
 a:hover {
 	color: black;
 	text-decoration: none;
-	
 }
 </style>
 <div class="container">
-	<div style="background-image: url('images/pattern2.png');" >
-	<div class="main-a">
-		<h1 style="margin-left: 30px; font-family: 'Hanna', serif;" >
-			<a href="<%=cp%>/"><span class="glyphicon glyphicon-star"></span>
-				<strong>★객체지향 IT 블로그</strong> </a>
-		</h1>
-	</div>
+		<div style="background-image: url('<%=cp%>/images/pattern3.jpg');" >
+			<div class="main-a" align="left">
+				<h1 style="margin-left: 30px; font-family: 'Hanna', serif;">
+					<a href="<%=cp%>/"><span class="glyphicon glyphicon-star"></span>
+						<strong>★객체지향 IT 블로그</strong> </a>
+				</h1>
+			</div>
 
-	<div class="login header-login" align="right"
-		style="margin-right: 30px;">
-		<c:if test="${empty sessionScope.member}">
-			<a href="<%=cp%>/member/login.do"><span
-				class="glyphicon glyphicon-log-in">로그인</span> </a>
-			<i></i>
-			<a href="<%=cp%>/member/member.do"><span
-				class="glyphicon glyphicon-user" style="margin-left: 10px"></span>
-				회원가입</a>
-		</c:if>
-		<c:if test="${not empty sessionScope.member}">
-			<span style="color: blue;">${sessionScope.member.userName}</span>님 <i></i>
-			<c:if test="${sessionScope.member.userId=='admin'}">
-				<a href="<%=cp%>/admin/main.do">관리자</a>
-				<i></i>
-			</c:if>
-			<a href="<%=cp%>/member/logout.do"><span
-				class="glyphicon glyphicon-log-out"></span> 로그아웃</a>
-		</c:if>
-	</div>
-	</div>
-
+			<div class="login header-login" align="right"
+				style="margin-right: 30px;">
+				<c:if test="${empty sessionScope.member}">
+					<a href="<%=cp%>/member/login.do"><span
+						class="glyphicon glyphicon-log-in">로그인</span> </a>
+					<i></i>
+					<a href="<%=cp%>/member/member.do"><span
+						class="glyphicon glyphicon-user" style="margin-left: 10px"></span>
+						회원가입</a>
+				</c:if>
+				<c:if test="${not empty sessionScope.member}">
+					<span style="color: blue;">${sessionScope.member.userName}</span>님 <i></i>
+					<c:if test="${sessionScope.member.userId=='admin'}">
+						<a href="<%=cp%>/admin/main.do">관리자</a>
+						<i></i>
+					</c:if>
+					<a href="<%=cp%>/member/logout.do"><span
+						class="glyphicon glyphicon-log-out"></span> 로그아웃</a>
+				</c:if>
+			</div>
+		</div>
 
 	<nav class="navbar navbar-inverse"
 		style="margin-left: 30px; margin-right: 30px">
@@ -74,9 +71,9 @@ a:hover {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-2">
 				<ul class="nav navbar-nav">
-					<li><a href="<%=cp%>/freeBoard/list.do">자유게시판
-							<span class="sr-only">(current)</span>
-					</a></li>				
+					<li><a href="<%=cp%>/freeBoard/list.do">자유게시판 <span
+							class="sr-only">(current)</span>
+					</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"
 						aria-haspopup="true">공부게시판 <span class="caret"></span></a>
@@ -99,13 +96,11 @@ a:hover {
 			</div>
 		</div>
 	</nav>
-	
-	<div class="count header" align="right"
-		style="margin-right: 30px;">
-		<span>
-         	오늘 방문자수 : <%=CountManager.getToDayCount() %>&nbsp;
-         	전체 방문자수 : <%=CountManager.getTotalCount() %><br>
+
+	<div class="count header" align="right" style="margin-right: 30px;">
+		<span> 오늘 방문자수 : <%=CountManager.getToDayCount()%>&nbsp; 전체
+			방문자수 : <%=CountManager.getTotalCount()%><br>
 		</span>
 	</div>
-	
+
 </div>

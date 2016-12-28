@@ -88,8 +88,6 @@ public class BoardServlet extends MyServlet {
 		// 한 페이지당 갯수 설정.
 		String rows = req.getParameter("rows");
 		if(rows!=null){
-			System.out.println("rows들어오나");
-			System.out.println(rows);
 			numPerPage=Integer.parseInt(rows);
 		}
 		//
@@ -120,29 +118,18 @@ public class BoardServlet extends MyServlet {
 			n++;
 		}
 
-		String params = "";
-		if (searchValue.length() != 0) {
-			// 검색인 경우 검색값 인코딩
-			searchValue = URLEncoder.encode(searchValue, "utf-8");
-			params = "searchKey=" + searchKey + "&searchValue=" + searchValue;
-		}
-
 		// 페이징 처리
 		String listUrl = cp + "/freeBoard/list.do?rows="+numPerPage;
 		String articleUrl = cp + "/freeBoard/article.do?page=" + current_page;
-	/*	if (params.length() != 0) {
-			listUrl += "?" + params;
-			articleUrl += "&" + params;
-		}
-		*/
+	
+		
 		//페이지이동 + 검색일경우 상황, 
 		if(searchValue.length()!=0) {
-			listUrl+="&searchKey="+searchKey
-					+"&searchValue="
-					+URLEncoder.encode(searchValue, "UTF-8");
+			listUrl +="&searchKey="+searchKey
+					+"&searchValue="+URLEncoder.encode(searchValue, "UTF-8");
 			articleUrl+="&searchKey="+searchKey
-					+"&searchValue="
-					+URLEncoder.encode(searchValue, "UTF-8");
+					  +"&searchValue="
+					  +URLEncoder.encode(searchValue, "UTF-8");
 		}
 		
 		String paging = util.paging(current_page, total_page, listUrl);
@@ -223,6 +210,8 @@ public class BoardServlet extends MyServlet {
 		}
 
 		// 파라미터 : num, page, [searchKey, searchValue]
+		
+		
 		int num = Integer.parseInt(req.getParameter("num"));
 		String page = req.getParameter("page");
 		String searchKey = req.getParameter("searchKey");

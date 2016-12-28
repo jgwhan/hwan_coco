@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>우리들의 IT 이야기</title>
+<title>Insert title here</title>
 <link href="<%=cp%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="<%=cp%>/jquery/jquery-3.1.1.min.js"></script>
 <script src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
@@ -23,6 +23,7 @@ function searchList() {
 	f.action="<%=cp%>/freeBoard/list.do";
 	f.submit();
 }
+
 function selectList() {
 	var f=document.selectListForm;
 	f.submit();
